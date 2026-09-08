@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #FAF8F5;
+  color: #1A1918;
+}
+
+body {
+  font-family: var(--font-inter);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F3EFEA;
+}
+::-webkit-scrollbar-thumb {
+  background: #C89D7C;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B5A2B;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(250, 248, 245, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 224, 218, 0.7);
+}
