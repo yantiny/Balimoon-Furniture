@@ -6,7 +6,8 @@ import { useSearchParams } from 'next/navigation';
 import { OrderData } from '../../types/furniture';
 import { trackOrderById } from '../../services/n8nService';
 import { formatIDR } from '../../utils/pricing';
-import { CheckCircle2, Clock, Search, Box, ShieldCheck, Copy, Check, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, Clock, Search, Box, ShieldCheck, Copy, Check, AlertCircle, Loader2, MessageSquareText } from 'lucide-react';
+import { generateWhatsAppPaymentUrl } from '../../utils/whatsapp';
 
 function OrderSuccessContent() {
   const searchParams = useSearchParams();
@@ -70,6 +71,8 @@ function OrderSuccessContent() {
     }
   };
 
+  const waPaymentUrl = order ? generateWhatsAppPaymentUrl(order) : '#';
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-16 space-y-8">
 
@@ -85,7 +88,7 @@ function OrderSuccessContent() {
           </h1>
         </div>
         <p className="text-warm-gray text-sm max-w-lg mx-auto">
-          Terima kasih telah memilih Balimoon Furniture. Rincian pesanan Anda diteruskan ke tim pengrajin kami.
+          Terima kasih telah memilih Balimoon Furniture. Rincian pesanan Anda telah diteruskan ke tim pengrajin kami.
         </p>
       </div>
 
@@ -138,6 +141,32 @@ function OrderSuccessContent() {
               {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4 text-wood-medium" />}
               <span>{copied ? 'Tersalin!' : 'Salin ID'}</span>
             </button>
+          </div>
+
+          {/* WhatsApp Payment Callout Card */}
+          <div className="p-5 bg-gradient-to-r from-emerald-900 to-green-800 text-white rounded-2xl shadow-md space-y-3">
+            <div className="flex items-start justify-between gap-3">
+              <div className="space-y-1">
+                <span className="text-[10px] uppercase font-extrabold tracking-widest text-emerald-300">LANGKAH SELANJUTNYA</span>
+                <h3 className="text-lg font-serif font-bold text-white">Pembayaran & Konfirmasi via WhatsApp</h3>
+                <p className="text-xs text-emerald-100 leading-relaxed">
+                  Silakan hubungi WhatsApp Admin untuk menerima nomor rekening transfer (BCA/Mandiri/QRIS) dan konfirmasi DP produksi.
+                </p>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-emerald-700/60 flex items-center justify-center shrink-0 border border-emerald-500/40">
+                <MessageSquareText className="w-5 h-5 text-emerald-200" />
+              </div>
+            </div>
+
+            <a
+              href={waPaymentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3.5 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-charcoal-900 font-extrabold text-sm transition-all shadow-lg flex items-center justify-center gap-2 group"
+            >
+              <MessageSquareText className="w-5 h-5 text-charcoal-900 fill-current" />
+              <span>KONFIRMASI & BAYAR VIA WHATSAPP</span>
+            </a>
           </div>
 
           {/* Product Details Grid */}
@@ -202,7 +231,7 @@ function OrderSuccessContent() {
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Secondary Action Buttons */}
           <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
               href={`/track?orderId=${encodeURIComponent(order.orderId)}`}

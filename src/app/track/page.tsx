@@ -6,7 +6,8 @@ import { trackOrderById } from '../../services/n8nService';
 import { OrderData } from '../../types/furniture';
 import OrderTimeline from '../../components/ui/OrderTimeline';
 import { formatIDR } from '../../utils/pricing';
-import { Search, Package, Clock, ShieldCheck, AlertCircle, Sparkles, User, Box } from 'lucide-react';
+import { generateWhatsAppPaymentUrl } from '../../utils/whatsapp';
+import { Search, Package, Clock, ShieldCheck, AlertCircle, Sparkles, User, Box, MessageSquareText } from 'lucide-react';
 
 function TrackOrderContent() {
   const searchParams = useSearchParams();
@@ -227,6 +228,29 @@ function TrackOrderContent() {
             </div>
 
             <OrderTimeline currentStatus={orderData.status} timelineDates={orderData.timelineDates} />
+          </div>
+
+          {/* WhatsApp Payment / Help Banner */}
+          <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                <MessageSquareText className="w-5 h-5 fill-current" />
+              </div>
+              <div className="text-xs">
+                <span className="font-bold text-emerald-900 block text-sm">Ada Pertanyaan atau Konfirmasi Pembayaran?</span>
+                <span className="text-emerald-700">Hubungi langsung WhatsApp Admin Balimoon Furniture.</span>
+              </div>
+            </div>
+
+            <a
+              href={generateWhatsAppPaymentUrl(orderData)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 shrink-0"
+            >
+              <MessageSquareText className="w-4 h-4 fill-current" />
+              <span>CHAT WA ADMIN</span>
+            </a>
           </div>
 
           {/* Verification Notice */}
