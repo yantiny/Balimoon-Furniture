@@ -10,12 +10,12 @@ export default function HomePage() {
 
   return (
     <div className="space-y-20 pb-20">
-      
+
       {/* 1. HERO SECTION */}
       <section className="relative overflow-hidden bg-gradient-to-b from-cream-200/80 via-cream-100 to-cream-100 pt-12 pb-20 border-b border-warm-border/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Left Hero Content */}
             <div className="lg:col-span-6 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-wood/10 text-wood-dark border border-wood/20 text-xs font-semibold uppercase tracking-wider">
@@ -24,7 +24,7 @@ export default function HomePage() {
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-charcoal-900 tracking-tight leading-[1.15]">
-                Mebel yang Dirancang Khusus untuk Ruangan Anda.
+                Mebel yang Dirancang Khusus untuk Ruangan Anda
               </h1>
 
               <p className="text-base sm:text-lg text-warm-gray leading-relaxed max-w-xl">
@@ -81,10 +81,11 @@ export default function HomePage() {
                     defaultLength={160}
                     defaultWidth={80}
                     defaultHeight={76}
+                    showDimensions={false}
                   />
 
                   <div className="mt-3 flex items-center justify-between text-xs text-warm-gray px-2">
-                    <span className="font-medium text-charcoal-900">Meja Makan Custom (160 x 80 x 76 cm)</span>
+                    <span className="font-medium text-charcoal-900">Meja Makan Custom</span>
                     <span className="text-wood font-semibold">Simulasi Model 3D</span>
                   </div>
 
@@ -99,7 +100,7 @@ export default function HomePage() {
       {/* 2. VALUE PROPOSITIONS SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-          <span className="text-xs uppercase font-bold tracking-widest text-wood-medium">Keunggulan Balimoon Furniture</span>
+          <span className="text-xs uppercase font-bold tracking-widest text-wood-medium">Keunggulan Bali Moon Furniture</span>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal-900">
             Dibuat Khusus Sesuai Karakter Rumah Anda
           </h2>
@@ -109,7 +110,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          
+
           <div className="p-6 bg-white rounded-2xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all space-y-4">
             <div className="w-12 h-12 rounded-xl bg-cream-200 text-wood-medium flex items-center justify-center">
               <Ruler className="w-6 h-6" />
@@ -120,15 +121,15 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="p-6 bg-white rounded-2xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all space-y-4">
+          {/* <div className="p-6 bg-white rounded-2xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all space-y-4">
             <div className="w-12 h-12 rounded-xl bg-cream-200 text-wood-medium flex items-center justify-center">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h3 className="text-lg font-serif font-bold text-charcoal-900">Material Kayu Pilihan</h3>
             <p className="text-xs text-warm-gray leading-relaxed">
-              Dibuat dari kayu Jati solid pilihan, Oak Putih, Mahoni berkualitas tinggi, dan aksen rotan alami.
+              Dibuat dari kayu Jati pilihan, Oak Putih, Mahoni berkualitas tinggi, dan aksen rotan alami.
             </p>
-          </div>
+          </div> */}
 
           <div className="p-6 bg-white rounded-2xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all space-y-4">
             <div className="w-12 h-12 rounded-xl bg-cream-200 text-wood-medium flex items-center justify-center">
@@ -186,7 +187,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            
+
             <div className="bg-white p-6 rounded-2xl border border-warm-border/70 space-y-3 relative shadow-soft">
               <span className="w-8 h-8 rounded-full bg-wood-medium text-white font-bold text-sm flex items-center justify-center font-mono">1</span>
               <h4 className="font-serif font-bold text-base text-charcoal-900">Pilih Model Mebel</h4>

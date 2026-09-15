@@ -15,12 +15,12 @@ export function getAdminWANumber(): string {
  */
 export function generateWhatsAppPaymentUrl(order: OrderData): string {
   const adminNumber = getAdminWANumber();
-  const priceDisplay = order.finalPrice && order.finalPrice > 0 
-    ? formatIDR(order.finalPrice) 
+  const priceDisplay = order.finalPrice && order.finalPrice > 0
+    ? formatIDR(order.finalPrice)
     : `${formatIDR(order.estimatedPrice)} (Estimasi)`;
 
   const messageLines = [
-    `Halo Admin Balimoon Furniture, saya ingin mengonfirmasi & melakukan pembayaran untuk pesanan mebel custom berikut:`,
+    `Halo Admin Bali Moon Furniture, saya ingin mengonfirmasi & melakukan pembayaran untuk pesanan mebel custom berikut:`,
     ``,
     `📌 *ID Pesanan*: ${order.orderId}`,
     `🛋️ *Produk*: ${order.productName}`,
@@ -38,3 +38,13 @@ export function generateWhatsAppPaymentUrl(order: OrderData): string {
 
   return `https://wa.me/${adminNumber}?text=${encodeURIComponent(messageLines)}`;
 }
+
+/**
+ * Generates a WhatsApp wa.me direct chat link with optional custom message
+ */
+export function generateWhatsAppChatUrl(customMessage?: string): string {
+  const adminNumber = getAdminWANumber();
+  const message = customMessage || 'Halo Admin Bali Moon Furniture, saya ingin bertanya seputar mebel custom / produk furniture.';
+  return `https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`;
+}
+

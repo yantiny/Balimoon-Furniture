@@ -30,19 +30,19 @@ const TIMELINE_STEPS: TimelineStep[] = [
   {
     key: 'PRODUKSI',
     label: 'Proses Pembuatan (PRODUKSI)',
-    description: 'Pekerjaan pertukangan kayu solid oven, perakitan konstruksi & pengamplasan.',
+    description: 'Pekerjaan pertukangan Kayu jati Perhutani memproses melalui tahap pemilihan, pemotongan, pengeringan, penyerutan, perakitan, dan pengamplasan',
     icon: Hammer,
   },
   {
     key: 'FINISHING',
     label: 'Pelapisan Finishing (FINISHING)',
-    description: 'Aplikasi pelapisan Natural Wood Finish untuk melindungi serat kayu alami.',
+    description: 'Pengamplasan akhir, pewarnaan, dan aplikasi pelapisan Natural Wood Finish untuk melindungi serat kayu alami.',
     icon: Paintbrush,
   },
   {
     key: 'SIAP DIKIRIM',
     label: 'Pemeriksaan & Packing (SIAP DIKIRIM)',
-    description: 'Inspeksi kualitas final (QC) dan pembungkusan peti kayu pelindung.',
+    description: 'Pemeriksaan kualitas akhir dan pemberian pelindung pada furnitur sebelum siap dikirim.',
     icon: PackageCheck,
   },
   {
@@ -123,16 +123,15 @@ export const OrderTimeline: React.FC<OrderTimelineProps> = ({ currentStatus, tim
 
           return (
             <div key={step.key} className="relative group">
-              
+
               {/* Timeline Marker Dot */}
               <div
-                className={`absolute -left-[31px] md:-left-[39px] top-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  isCompleted
+                className={`absolute -left-[31px] md:-left-[39px] top-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isCompleted
                     ? 'bg-wood-medium text-white shadow-md'
                     : isActive
-                    ? 'bg-amber-500 text-white ring-4 ring-amber-100 shadow-lg scale-110'
-                    : 'bg-cream-200 text-warm-gray border border-warm-border'
-                }`}
+                      ? 'bg-amber-500 text-white ring-4 ring-amber-100 shadow-lg scale-110'
+                      : 'bg-cream-200 text-warm-gray border border-warm-border'
+                  }`}
               >
                 {isCompleted ? (
                   <span className="font-bold text-xs">✓</span>
@@ -145,13 +144,12 @@ export const OrderTimeline: React.FC<OrderTimelineProps> = ({ currentStatus, tim
 
               {/* Step Card */}
               <div
-                className={`p-4 rounded-xl transition-all border ${
-                  isActive
+                className={`p-4 rounded-xl transition-all border ${isActive
                     ? 'bg-white border-amber-300 shadow-elevated'
                     : isCompleted
-                    ? 'bg-cream-100/60 border-warm-border/50'
-                    : 'bg-cream-50/40 border-transparent opacity-60'
-                }`}
+                      ? 'bg-cream-100/60 border-warm-border/50'
+                      : 'bg-cream-50/40 border-transparent opacity-60'
+                  }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">

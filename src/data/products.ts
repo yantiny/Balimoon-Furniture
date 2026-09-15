@@ -7,10 +7,10 @@ export const STATIC_PRODUCTS: Product[] = [
     tagline: "Kursi makan & santai kayu solid berdesain ergonomis dan estetis.",
     category: "living",
     basePrice: 1200000,
-    description: "Kursi kayu solid pilihan dengan konstruksi kokoh dan sandaran ergonomis. Sangat cocok untuk meja makan maupun sudut baca keluarga.",
-    material: "Kayu Jati Solid",
+    description: "Kursi kayu jati perhutani pilihan dengan konstruksi kokoh dan sandaran ergonomis. Sangat cocok untuk meja makan maupun sudut baca keluarga.",
+    material: "Kayu Jati Perhutani",
     materials: [
-      { id: "teak", name: "Kayu Jati Solid", description: "Jati kualitas premium dengan keindahan serat kayu alami.", priceMultiplier: 1.0 }
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Jati kualitas premium dengan keindahan serat kayu alami.", priceMultiplier: 1.0 }
     ],
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/chair.glb",
@@ -30,13 +30,13 @@ export const STATIC_PRODUCTS: Product[] = [
   {
     id: "sofa-single-02",
     name: "Kursi Sofa Custom (Chair Sofa)",
-    tagline: "Sofa santai dengan rangka kayu solid dan kenyamanan tinggi.",
+    tagline: "Sofa santai dengan rangka kayu jati perhutani dan kenyamanan tinggi.",
     category: "living",
     basePrice: 2400000,
-    description: "Kursi sofa santai berbahan rangka kayu solid dengan bantalan empuk dan desain modern untuk kenyamanan ruang tamu Anda.",
-    material: "Kayu Jati Solid",
+    description: "Kursi sofa santai berbahan rangka kayu jati perhutani dengan bantalan empuk dan desain modern untuk kenyamanan ruang tamu Anda.",
+    material: "Kayu Jati Perhutani",
     materials: [
-      { id: "teak", name: "Kayu Jati Solid", description: "Rangka kayu jati solid dipadu kain linen berkualitas.", priceMultiplier: 1.0 }
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Rangka kayu jati perhutani dipadu kain linen berkualitas.", priceMultiplier: 1.0 }
     ],
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/chairsofa.glb",
@@ -56,13 +56,13 @@ export const STATIC_PRODUCTS: Product[] = [
   {
     id: "dipan-tempat-tidur-03",
     name: "Dipan Tempat Tidur Jati (Bed Frame)",
-    tagline: "Dipan kayu solid berkualitas tinggi untuk kenyamanan tidur maksimal.",
+    tagline: "Dipan kayu jati perhutani berkualitas tinggi untuk kenyamanan tidur maksimal.",
     category: "living",
     basePrice: 4500000,
-    description: "Tempat tidur kayu jati solid dengan konstruksi sambungan kayu presisi yang sangat kuat, tidak berderit, dan tahan puluhan tahun.",
-    material: "Kayu Jati Solid",
+    description: "Tempat tidur kayu jati perhutani dengan konstruksi sambungan kayu presisi yang sangat kuat, tidak berderit, dan tahan puluhan tahun.",
+    material: "Kayu Jati Perhutani",
     materials: [
-      { id: "teak", name: "Kayu Jati Solid", description: "Kayu jati solid kelas oven pilihan untuk stabilitas maksimal.", priceMultiplier: 1.0 }
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Kayu jati perhutani pilihan untuk stabilitas maksimal.", priceMultiplier: 1.0 }
     ],
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/dipan.glb",
@@ -85,10 +85,10 @@ export const STATIC_PRODUCTS: Product[] = [
     tagline: "Kabinet penyimpanan & lemari baju serbaguna yang elegan.",
     category: "storage",
     basePrice: 3800000,
-    description: "Lemari kayu solid dengan kapasitas luas, pintu kayu presisi, dan rak penyimpanan yang dapat disesuaikan kebutuhan ruangan Anda.",
-    material: "Kayu Jati Solid",
+    description: "Lemari kayu jati perhutani dengan kapasitas luas, pintu kayu presisi, dan rak penyimpanan yang dapat disesuaikan kebutuhan ruangan Anda.",
+    material: "Kayu Jati Perhutani",
     materials: [
-      { id: "teak", name: "Kayu Jati Solid", description: "Konstruksi kayu jati tebal dengan daya tahan kelembapan sangat baik.", priceMultiplier: 1.0 }
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Konstruksi kayu jati perhutani tebal dengan daya tahan kelembapan sangat baik.", priceMultiplier: 1.0 }
     ],
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/lemari.glb",
@@ -112,9 +112,9 @@ export const STATIC_PRODUCTS: Product[] = [
     category: "living",
     basePrice: 1500000,
     description: "Meja kecil serbaguna dengan permukaan kayu halus dan desain minimalis serbaguna sebagai meja sudut maupun meja samping sofa.",
-    material: "Kayu Jati Solid",
+    material: "Kayu Jati Perhutani",
     materials: [
-      { id: "teak", name: "Kayu Jati Solid", description: "Kayu jati solid oven dengan warna alami serat kayu.", priceMultiplier: 1.0 }
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Kayu jati perhutani oven dengan warna alami serat kayu.", priceMultiplier: 1.0 }
     ],
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/mejakecil.glb",
@@ -138,9 +138,9 @@ export const STATIC_PRODUCTS: Product[] = [
     category: "dining",
     basePrice: 3200000,
     description: "Meja makan kayu tinggi dengan papan kayu tebal presisi. Dirancang khusus untuk ruang makan keluarga maupun meja kerja profesional.",
-    material: "Kayu Jati Solid",
+    material: "Kayu Jati Perhutani",
     materials: [
-      { id: "teak", name: "Kayu Jati Solid", description: "Papan kayu jati pilihan tebal yang kuat dan stabil.", priceMultiplier: 1.0 }
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Papan kayu jati perhutani pilihan tebal yang kuat dan stabil.", priceMultiplier: 1.0 }
     ],
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/mejatinggi.glb",
@@ -164,9 +164,9 @@ export const STATIC_PRODUCTS: Product[] = [
     category: "storage",
     basePrice: 2800000,
     description: "Rak kayu bertingkat serbaguna untuk menata buku, tanaman hias, dan koleksi aksesoris interior rumah.",
-    material: "Kayu Jati Solid",
+    material: "Kayu Jati Perhutani",
     materials: [
-      { id: "teak", name: "Kayu Jati Solid", description: "Rangka dan ambalan kayu jati oven berdaya tahan tinggi.", priceMultiplier: 1.0 }
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Rangka dan ambalan kayu jati perhutani oven berdaya tahan tinggi.", priceMultiplier: 1.0 }
     ],
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/rak.glb",
@@ -190,9 +190,9 @@ export const STATIC_PRODUCTS: Product[] = [
     category: "storage",
     basePrice: 3100000,
     description: "Rak kayu bertingkat arsitektural yang cocok digunakan sebagai pemisah ruangan (room divider) maupun tempat penyimpanan utama.",
-    material: "Kayu Jati Solid",
+    material: "Kayu Jati Perhutani",
     materials: [
-      { id: "teak", name: "Kayu Jati Solid", description: "Struktur kayu jati tebal yang kokoh dan seimbang.", priceMultiplier: 1.0 }
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Struktur kayu jati perhutani tebal yang kokoh dan seimbang.", priceMultiplier: 1.0 }
     ],
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/rak1.glb",

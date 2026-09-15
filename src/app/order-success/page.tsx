@@ -88,7 +88,7 @@ function OrderSuccessContent() {
           </h1>
         </div>
         <p className="text-warm-gray text-sm max-w-lg mx-auto">
-          Terima kasih telah memilih Balimoon Furniture. Rincian pesanan Anda telah diteruskan ke tim pengrajin kami.
+          Terima kasih telah memilih Bali Moon Furniture. Rincian pesanan Anda telah diteruskan ke tim pengrajin kami.
         </p>
       </div>
 

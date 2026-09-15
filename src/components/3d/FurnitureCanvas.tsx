@@ -3,6 +3,7 @@
 import React, { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, ContactShadows, Environment, Center } from '@react-three/drei';
+import * as THREE from 'three';
 import { ParametricFurniture } from './ParametricFurniture';
 import { GLBFurnitureModel } from './GLBFurnitureModel';
 import { RefreshCw, RotateCcw, Move3d } from 'lucide-react';
@@ -45,11 +46,10 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
   };
 
   const initialCamPos = cameraPosition || [2.0, 1.2, 2.2];
-  const controlsActive = enableControls && !hideUIControls;
 
   return (
     <div className={`relative w-full h-full bg-gradient-to-b from-cream-100 via-cream-200 to-cream-300/80 overflow-hidden group ${
-      hideUIControls ? 'rounded-t-2xl' : 'h-[400px] md:h-[550px] rounded-2xl shadow-inner border border-warm-border/60'
+      hideUIControls ? 'rounded-t-2xl' : 'h-[320px] sm:h-[420px] md:h-[520px] rounded-2xl shadow-inner border border-warm-border/60'
     }`}>
       {/* Top Floating Control Bar (Only shown on full customizer view when controls enabled) */}
       {!hideUIControls && enableControls && (
@@ -148,18 +148,20 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
           minDistance={1.0}
           maxDistance={6.0}
           maxPolarAngle={Math.PI / 2 + 0.05}
+          touches={{
+            ONE: THREE.TOUCH.ROTATE,
+            TWO: THREE.TOUCH.DOLLY_PAN
+          }}
         />
       </Canvas>
 
       {/* Bottom Hint (Only shown when controls enabled and UI visible) */}
       {!hideUIControls && enableControls && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
-          <div className="px-3 py-1 bg-charcoal-900/60 backdrop-blur-md text-white text-[11px] rounded-full shadow-sm flex items-center gap-2">
-            <span>Klik & Geser untuk Memutar</span>
-            <span className="text-cream-300">•</span>
-            <span>Scroll untuk Zoom</span>
-            <span className="text-cream-300">•</span>
-            <span>Klik Kanan untuk Menggeser</span>
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none w-max max-w-[90%]">
+          <div className="px-3 py-1.5 bg-charcoal-900/80 backdrop-blur-md text-white text-[11px] rounded-full shadow-md flex items-center justify-center gap-2 text-center">
+            <span>1 Jari / Drag: Putar</span>
+            <span className="text-amber-400">•</span>
+            <span>Pinch / Scroll: Zoom</span>
           </div>
         </div>
       )}

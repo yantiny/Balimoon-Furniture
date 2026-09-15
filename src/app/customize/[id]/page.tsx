@@ -22,7 +22,9 @@ import {
   Phone,
   Mail,
   MapPin,
-  FileText
+  FileText,
+  Plus,
+  Minus
 } from 'lucide-react';
 
 export default function CustomizerPage() {
@@ -231,16 +233,57 @@ export default function CustomizerPage() {
                   <Ruler className="w-5 h-5 text-wood-medium" />
                   <h3 className="font-serif font-bold text-lg text-charcoal-900">Atur Ukuran Custom</h3>
                 </div>
-                <span className="text-xs text-warm-gray">Satuan: Centimeter (cm)</span>
+                <span className="text-xs font-semibold text-wood-dark bg-cream-200 px-2.5 py-1 rounded-full border border-warm-border/40">
+                  Satuan: Centimeter (cm)
+                </span>
               </div>
 
-              {/* Length Slider & Input */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <label className="font-semibold text-charcoal-800">Panjang (P)</label>
-                  <span className="text-warm-gray text-[11px]">Min: {product.length.min}cm | Max: {product.length.max}cm</span>
+              {/* Panjang (P) Control Card */}
+              <div className="p-4 bg-cream-100/70 rounded-2xl border border-warm-border/80 space-y-3 shadow-xs">
+                <div className="flex items-center justify-between flex-wrap gap-1">
+                  <label className="font-bold text-sm text-charcoal-900 flex items-center gap-1.5">
+                    <span>Panjang (P)</span>
+                  </label>
+                  <span className="text-[11px] font-medium text-warm-gray bg-white/90 px-2.5 py-0.5 rounded-full border border-warm-border/60">
+                    Min: {product.length.min} cm | Max: {product.length.max} cm
+                  </span>
                 </div>
-                <div className="flex items-center gap-4">
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setLength(prev => Math.max(product.length.min, prev - (product.length.step || 1)))}
+                    className="w-11 h-11 rounded-xl bg-white border border-warm-border text-charcoal-800 flex items-center justify-center hover:bg-cream-200 active:scale-95 transition-all shrink-0 touch-manipulation shadow-xs"
+                    aria-label="Kurangi Panjang"
+                  >
+                    <Minus className="w-5 h-5 text-charcoal-700" />
+                  </button>
+
+                  <div className="flex-1 relative">
+                    <input
+                      type="number"
+                      value={length}
+                      onChange={(e) => setLength(Number(e.target.value))}
+                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${
+                        isLengthValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
+                      }`}
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-wood-dark font-mono pointer-events-none select-none">
+                      cm
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setLength(prev => Math.min(product.length.max, prev + (product.length.step || 1)))}
+                    className="w-11 h-11 rounded-xl bg-white border border-warm-border text-charcoal-800 flex items-center justify-center hover:bg-cream-200 active:scale-95 transition-all shrink-0 touch-manipulation shadow-xs"
+                    aria-label="Tambah Panjang"
+                  >
+                    <Plus className="w-5 h-5 text-charcoal-700" />
+                  </button>
+                </div>
+
+                <div className="pt-1">
                   <input
                     type="range"
                     min={product.length.min}
@@ -248,31 +291,63 @@ export default function CustomizerPage() {
                     step={product.length.step || 1}
                     value={length}
                     onChange={(e) => setLength(Number(e.target.value))}
-                    className="flex-1 accent-wood-medium h-2 bg-cream-200 rounded-lg cursor-pointer"
+                    className="w-full accent-wood-medium h-2.5 bg-cream-200 rounded-lg cursor-pointer"
                   />
-                  <div className="w-24 relative">
-                    <input
-                      type="number"
-                      value={length}
-                      onChange={(e) => setLength(Number(e.target.value))}
-                      className={`w-full px-3 py-2 rounded-xl text-sm font-mono font-bold text-center border focus:outline-none ${isLengthValid ? 'border-warm-border bg-cream-100 text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
-                        }`}
-                    />
-                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-warm-gray font-mono">cm</span>
-                  </div>
                 </div>
+
                 {!isLengthValid && (
-                  <p className="text-[11px] text-red-600 font-medium">Panjang harus antara {product.length.min} cm dan {product.length.max} cm.</p>
+                  <p className="text-xs text-red-600 font-medium">
+                    Panjang harus antara {product.length.min} cm dan {product.length.max} cm.
+                  </p>
                 )}
               </div>
 
-              {/* Width Slider & Input */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <label className="font-semibold text-charcoal-800">Lebar (L)</label>
-                  <span className="text-warm-gray text-[11px]">Min: {product.width.min}cm | Max: {product.width.max}cm</span>
+              {/* Lebar (L) Control Card */}
+              <div className="p-4 bg-cream-100/70 rounded-2xl border border-warm-border/80 space-y-3 shadow-xs">
+                <div className="flex items-center justify-between flex-wrap gap-1">
+                  <label className="font-bold text-sm text-charcoal-900 flex items-center gap-1.5">
+                    <span>Lebar (L)</span>
+                  </label>
+                  <span className="text-[11px] font-medium text-warm-gray bg-white/90 px-2.5 py-0.5 rounded-full border border-warm-border/60">
+                    Min: {product.width.min} cm | Max: {product.width.max} cm
+                  </span>
                 </div>
-                <div className="flex items-center gap-4">
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setWidth(prev => Math.max(product.width.min, prev - (product.width.step || 1)))}
+                    className="w-11 h-11 rounded-xl bg-white border border-warm-border text-charcoal-800 flex items-center justify-center hover:bg-cream-200 active:scale-95 transition-all shrink-0 touch-manipulation shadow-xs"
+                    aria-label="Kurangi Lebar"
+                  >
+                    <Minus className="w-5 h-5 text-charcoal-700" />
+                  </button>
+
+                  <div className="flex-1 relative">
+                    <input
+                      type="number"
+                      value={width}
+                      onChange={(e) => setWidth(Number(e.target.value))}
+                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${
+                        isWidthValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
+                      }`}
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-wood-dark font-mono pointer-events-none select-none">
+                      cm
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setWidth(prev => Math.min(product.width.max, prev + (product.width.step || 1)))}
+                    className="w-11 h-11 rounded-xl bg-white border border-warm-border text-charcoal-800 flex items-center justify-center hover:bg-cream-200 active:scale-95 transition-all shrink-0 touch-manipulation shadow-xs"
+                    aria-label="Tambah Lebar"
+                  >
+                    <Plus className="w-5 h-5 text-charcoal-700" />
+                  </button>
+                </div>
+
+                <div className="pt-1">
                   <input
                     type="range"
                     min={product.width.min}
@@ -280,31 +355,63 @@ export default function CustomizerPage() {
                     step={product.width.step || 1}
                     value={width}
                     onChange={(e) => setWidth(Number(e.target.value))}
-                    className="flex-1 accent-wood-medium h-2 bg-cream-200 rounded-lg cursor-pointer"
+                    className="w-full accent-wood-medium h-2.5 bg-cream-200 rounded-lg cursor-pointer"
                   />
-                  <div className="w-24 relative">
-                    <input
-                      type="number"
-                      value={width}
-                      onChange={(e) => setWidth(Number(e.target.value))}
-                      className={`w-full px-3 py-2 rounded-xl text-sm font-mono font-bold text-center border focus:outline-none ${isWidthValid ? 'border-warm-border bg-cream-100 text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
-                        }`}
-                    />
-                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-warm-gray font-mono">cm</span>
-                  </div>
                 </div>
+
                 {!isWidthValid && (
-                  <p className="text-[11px] text-red-600 font-medium">Lebar harus antara {product.width.min} cm dan {product.width.max} cm.</p>
+                  <p className="text-xs text-red-600 font-medium">
+                    Lebar harus antara {product.width.min} cm dan {product.width.max} cm.
+                  </p>
                 )}
               </div>
 
-              {/* Height Slider & Input */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <label className="font-semibold text-charcoal-800">Tinggi (T)</label>
-                  <span className="text-warm-gray text-[11px]">Min: {product.height.min}cm | Max: {product.height.max}cm</span>
+              {/* Tinggi (T) Control Card */}
+              <div className="p-4 bg-cream-100/70 rounded-2xl border border-warm-border/80 space-y-3 shadow-xs">
+                <div className="flex items-center justify-between flex-wrap gap-1">
+                  <label className="font-bold text-sm text-charcoal-900 flex items-center gap-1.5">
+                    <span>Tinggi (T)</span>
+                  </label>
+                  <span className="text-[11px] font-medium text-warm-gray bg-white/90 px-2.5 py-0.5 rounded-full border border-warm-border/60">
+                    Min: {product.height.min} cm | Max: {product.height.max} cm
+                  </span>
                 </div>
-                <div className="flex items-center gap-4">
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setHeight(prev => Math.max(product.height.min, prev - (product.height.step || 1)))}
+                    className="w-11 h-11 rounded-xl bg-white border border-warm-border text-charcoal-800 flex items-center justify-center hover:bg-cream-200 active:scale-95 transition-all shrink-0 touch-manipulation shadow-xs"
+                    aria-label="Kurangi Tinggi"
+                  >
+                    <Minus className="w-5 h-5 text-charcoal-700" />
+                  </button>
+
+                  <div className="flex-1 relative">
+                    <input
+                      type="number"
+                      value={height}
+                      onChange={(e) => setHeight(Number(e.target.value))}
+                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${
+                        isHeightValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
+                      }`}
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-wood-dark font-mono pointer-events-none select-none">
+                      cm
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setHeight(prev => Math.min(product.height.max, prev + (product.height.step || 1)))}
+                    className="w-11 h-11 rounded-xl bg-white border border-warm-border text-charcoal-800 flex items-center justify-center hover:bg-cream-200 active:scale-95 transition-all shrink-0 touch-manipulation shadow-xs"
+                    aria-label="Tambah Tinggi"
+                  >
+                    <Plus className="w-5 h-5 text-charcoal-700" />
+                  </button>
+                </div>
+
+                <div className="pt-1">
                   <input
                     type="range"
                     min={product.height.min}
@@ -312,21 +419,14 @@ export default function CustomizerPage() {
                     step={product.height.step || 1}
                     value={height}
                     onChange={(e) => setHeight(Number(e.target.value))}
-                    className="flex-1 accent-wood-medium h-2 bg-cream-200 rounded-lg cursor-pointer"
+                    className="w-full accent-wood-medium h-2.5 bg-cream-200 rounded-lg cursor-pointer"
                   />
-                  <div className="w-24 relative">
-                    <input
-                      type="number"
-                      value={height}
-                      onChange={(e) => setHeight(Number(e.target.value))}
-                      className={`w-full px-3 py-2 rounded-xl text-sm font-mono font-bold text-center border focus:outline-none ${isHeightValid ? 'border-warm-border bg-cream-100 text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
-                        }`}
-                    />
-                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-warm-gray font-mono">cm</span>
-                  </div>
                 </div>
+
                 {!isHeightValid && (
-                  <p className="text-[11px] text-red-600 font-medium">Tinggi harus antara {product.height.min} cm dan {product.height.max} cm.</p>
+                  <p className="text-xs text-red-600 font-medium">
+                    Tinggi harus antara {product.height.min} cm dan {product.height.max} cm.
+                  </p>
                 )}
               </div>
             </div>
@@ -373,7 +473,7 @@ export default function CustomizerPage() {
                   value={additionalRequest}
                   onChange={(e) => setAdditionalRequest(e.target.value)}
                   placeholder="Contoh: Sudut meja dibuat membulat halus 10mm, lubang kabel di bagian belakang..."
-                  className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-xs text-charcoal-900 placeholder:text-warm-gray focus:outline-none focus:ring-2 focus:ring-wood-medium"
+                  className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-base sm:text-xs text-charcoal-900 placeholder:text-warm-gray focus:outline-none focus:ring-2 focus:ring-wood-medium"
                 />
               </div>
             </div>
@@ -394,7 +494,7 @@ export default function CustomizerPage() {
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                     placeholder="Budi Santoso"
-                    className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
+                    className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-base sm:text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
                   />
                 </div>
 
@@ -409,7 +509,7 @@ export default function CustomizerPage() {
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
                     placeholder="08123456789"
-                    className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
+                    className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-base sm:text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
                   />
                 </div>
               </div>
@@ -425,7 +525,7 @@ export default function CustomizerPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="budi@example.com"
-                  className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
+                  className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-base sm:text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
                 />
               </div>
 
@@ -440,7 +540,7 @@ export default function CustomizerPage() {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="Jl. Sudirman No. 12, Jakarta Selatan, DKI Jakarta..."
-                  className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
+                  className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-base sm:text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
                 />
               </div>
             </div>

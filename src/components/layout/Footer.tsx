@@ -1,12 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import { Hammer, ShieldCheck, Ruler, Box, Sparkles } from 'lucide-react';
+import { Hammer, ShieldCheck, Ruler, Box, Sparkles, MessageCircle } from 'lucide-react';
+import { generateWhatsAppChatUrl } from '../../utils/whatsapp';
+
 
 export const Footer = () => {
   return (
     <footer className="bg-charcoal-900 text-cream-200 border-t border-charcoal-700 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Value Propositions Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-charcoal-700">
           <div className="flex items-start gap-4">
@@ -52,7 +54,7 @@ export const Footer = () => {
 
         {/* Main Footer Links */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 py-12">
-          
+
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
@@ -100,14 +102,21 @@ export const Footer = () => {
 
           {/* Contact / Service */}
           <div>
-            <h5 className="text-white font-semibold text-sm tracking-wide mb-4 uppercase text-xs">Jaminan Finishing</h5>
+            <h5 className="text-white font-semibold text-sm tracking-wide mb-4 uppercase text-xs">Layanan Pelanggan</h5>
             <p className="text-sm text-warm-gray leading-relaxed mb-3">
-              Semua produk dilindungi dengan lapisan <strong>Finishing Alami Kayu</strong> ramah lingkungan untuk menjaga keindahan serat kayu asli.
+              Butuh panduan kustomisasi atau pertanyaan seputar kayu & pengiriman? Hubungi Admin kami.
             </p>
-            <div className="inline-block px-3 py-1 bg-wood/20 text-amber-300 text-xs rounded-full border border-wood/30">
-              Finishing Alami Kayu
-            </div>
+            <a
+              href={generateWhatsAppChatUrl('Halo Admin Bali Moon Furniture, saya ingin bertanya tentang custom furniture.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3.5 py-2 bg-emerald-700/30 hover:bg-emerald-600/40 text-emerald-300 hover:text-emerald-200 text-xs font-medium rounded-xl border border-emerald-500/40 transition-colors"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <span>Chat WA Admin</span>
+            </a>
           </div>
+
 
         </div>
 

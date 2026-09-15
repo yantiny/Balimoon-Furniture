@@ -238,7 +238,7 @@ function TrackOrderContent() {
               </div>
               <div className="text-xs">
                 <span className="font-bold text-emerald-900 block text-sm">Ada Pertanyaan atau Konfirmasi Pembayaran?</span>
-                <span className="text-emerald-700">Hubungi langsung WhatsApp Admin Balimoon Furniture.</span>
+                <span className="text-emerald-700">Hubungi langsung WhatsApp Admin Bali Moon Furniture.</span>
               </div>
             </div>
 
@@ -256,7 +256,7 @@ function TrackOrderContent() {
           {/* Verification Notice */}
           <div className="p-4 bg-cream-200/50 rounded-xl border border-warm-border text-[11px] text-warm-gray flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-wood-medium shrink-0" />
-            <span>Data rincian spesifikasi pesanan di atas terhubung langsung dengan basis data resmi Balimoon Furniture.</span>
+            <span>Data rincian spesifikasi pesanan di atas terhubung langsung dengan basis data resmi Bali Moon Furniture.</span>
           </div>
 
         </div>

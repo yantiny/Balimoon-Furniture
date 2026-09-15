@@ -33,8 +33,9 @@ const config: Config = {
         }
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        serif: ['var(--font-playfair)', 'serif'],
+        sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Cormorant Garamond', 'serif'],
+        mono: ['var(--font-mono)', 'Space Mono', 'monospace'],
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(26, 25, 24, 0.05)',

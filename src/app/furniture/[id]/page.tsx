@@ -2,13 +2,18 @@
 
 import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+
 import Link from 'next/link';
-import { getProductById } from '../../../data/products';
+import { STATIC_PRODUCTS, getProductById } from '../../../data/products';
 import { formatIDR } from '../../../utils/pricing';
 import { FurnitureCanvas } from '../../../components/3d/FurnitureCanvas';
 import { SlidersHorizontal, Clock, Ruler, Sparkles, ArrowLeft, Box } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default function ProductDetailPage() {
+
+
   const params = useParams();
   const router = useRouter();
   const productId = Array.isArray(params?.id) ? params.id[0] : params?.id as string;

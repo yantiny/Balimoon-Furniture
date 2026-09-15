@@ -1,6 +1,6 @@
 # Folder Aset Model 3D (.glb)
 
-Folder ini digunakan untuk menyimpan berkas 3D model berformat **.glb** atau **.gltf** untuk produk mebel Balimoon Furniture.
+Folder ini digunakan untuk menyimpan berkas 3D model berformat **.glb** atau **.gltf** untuk produk mebel Bali Moon Furniture.
 
 ## Cara Penggunaan di Next.js:
 Setiap berkas `.glb` yang ditaruh di folder ini dapat langsung diakses dari browser dengan path publik `/models/nama_file.glb`.
