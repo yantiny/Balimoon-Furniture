@@ -200,7 +200,7 @@ export function normalizeOrderData(raw: any, fallback?: OrderData): OrderData {
 
   // 6. Material & Finishing
   const rawMat = item.material || item['Material'] || item.bahanKayu || item['Bahan Kayu'] || item.selectedMaterial || fallback?.material;
-  const material = (rawMat && rawMat !== '-' && rawMat !== 'undefined' && String(rawMat).trim() !== '') ? String(rawMat).trim() : 'Kayu Jati Solid';
+  const material = (rawMat && rawMat !== '-' && rawMat !== 'undefined' && String(rawMat).trim() !== '') ? String(rawMat).trim() : 'Kayu Jati Perhutani';
 
   const rawFin = item.finishing || item['Finishing'] || fallback?.finishing;
   const finishing = (rawFin && rawFin !== '-' && rawFin !== 'undefined' && String(rawFin).trim() !== '') ? String(rawFin).trim() : 'Finishing Alami Kayu';

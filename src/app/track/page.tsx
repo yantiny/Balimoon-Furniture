@@ -131,7 +131,7 @@ function TrackOrderContent() {
                 {orderData.length} x {orderData.width} x {orderData.height} cm
               </span>
               <span className="px-3 py-1.5 bg-wood/10 text-wood-dark font-semibold rounded-lg border border-wood/20">
-                {orderData.material && orderData.material !== '-' ? orderData.material : 'Kayu Jati Solid'}
+                {orderData.material && orderData.material !== '-' ? orderData.material : 'Kayu Jati Perhutani'}
               </span>
               {orderData.finalPrice ? (
                 <div className="px-3.5 py-1.5 bg-emerald-700 text-white rounded-lg shadow-sm font-serif font-bold text-xs flex items-center gap-1.5">
@@ -179,7 +179,7 @@ function TrackOrderContent() {
               <div className="p-3.5 bg-cream-50 rounded-xl border border-warm-border/60">
                 <span className="text-warm-gray block text-[11px] font-medium">Bahan Kayu</span>
                 <span className="font-bold text-charcoal-900 text-sm mt-0.5 block">
-                  {orderData.material && orderData.material !== '-' ? orderData.material : 'Kayu Jati Solid'}
+                  {orderData.material && orderData.material !== '-' ? orderData.material : 'Kayu Jati Perhutani'}
                 </span>
               </div>
 

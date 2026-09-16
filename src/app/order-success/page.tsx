@@ -186,7 +186,7 @@ function OrderSuccessContent() {
             <div className="p-4 bg-cream-50 rounded-xl border border-warm-border/60 space-y-1">
               <span className="text-warm-gray block font-medium">Bahan Kayu Pilihan</span>
               <span className="font-semibold text-charcoal-900 text-sm">
-                {order.material && order.material !== '-' ? order.material : 'Kayu Jati Solid'}
+                {order.material && order.material !== '-' ? order.material : 'Kayu Jati Perhutani'}
               </span>
             </div>
 

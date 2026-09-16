@@ -117,19 +117,19 @@ export default function HomePage() {
             </div>
             <h3 className="text-lg font-serif font-bold text-charcoal-900">Ukuran Bebas (Custom Size)</h3>
             <p className="text-xs text-warm-gray leading-relaxed">
-              Tidak terbatas pada ukuran standar toko. Bebas atur Panjang, Lebar, dan Tinggi agar pas dengan sudut ruangan Anda.
+              Bebas menyesuaikan panjang, lebar, dan tinggi mebel sesuai dengan kebutuhan dan keinginan Anda, sehingga ukurannya dapat lebih pas dengan ruang dan tata letak yang tersedia.
             </p>
           </div>
 
-          {/* <div className="p-6 bg-white rounded-2xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all space-y-4">
+          <div className="p-6 bg-white rounded-2xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all space-y-4">
             <div className="w-12 h-12 rounded-xl bg-cream-200 text-wood-medium flex items-center justify-center">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h3 className="text-lg font-serif font-bold text-charcoal-900">Material Kayu Pilihan</h3>
             <p className="text-xs text-warm-gray leading-relaxed">
-              Dibuat dari kayu Jati pilihan, Oak Putih, Mahoni berkualitas tinggi, dan aksen rotan alami.
+              Dibuat dari kayu Jati Perhutani pilihan yang memiliki serat alami indah, kuat, dan tahan lama untuk menghasilkan furnitur berkualitas.
             </p>
-          </div> */}
+          </div>
 
           <div className="p-6 bg-white rounded-2xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all space-y-4">
             <div className="w-12 h-12 rounded-xl bg-cream-200 text-wood-medium flex items-center justify-center">
@@ -147,7 +147,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-lg font-serif font-bold text-charcoal-900">Simulasi 3D Realtime</h3>
             <p className="text-xs text-warm-gray leading-relaxed">
-              Lihat perubahan proporsi mebel secara langsung dalam tampilan 3D interaktif sebelum mengajukan estimasi harga.
+              Lihat dan sesuaikan perubahan bentuk, ukuran, serta proporsi mebel secara langsung melalui tampilan 3D interaktif yang responsif dan mudah digunakan.
             </p>
           </div>
 

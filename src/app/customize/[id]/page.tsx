@@ -264,9 +264,8 @@ export default function CustomizerPage() {
                       type="number"
                       value={length}
                       onChange={(e) => setLength(Number(e.target.value))}
-                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${
-                        isLengthValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
-                      }`}
+                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${isLengthValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
+                        }`}
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-wood-dark font-mono pointer-events-none select-none">
                       cm
@@ -328,9 +327,8 @@ export default function CustomizerPage() {
                       type="number"
                       value={width}
                       onChange={(e) => setWidth(Number(e.target.value))}
-                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${
-                        isWidthValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
-                      }`}
+                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${isWidthValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
+                        }`}
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-wood-dark font-mono pointer-events-none select-none">
                       cm
@@ -392,9 +390,8 @@ export default function CustomizerPage() {
                       type="number"
                       value={height}
                       onChange={(e) => setHeight(Number(e.target.value))}
-                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${
-                        isHeightValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
-                      }`}
+                      className={`w-full py-2.5 pl-3 pr-10 rounded-xl text-base font-mono font-bold text-center border focus:outline-none focus:ring-2 focus:ring-wood-medium ${isHeightValid ? 'border-warm-border bg-white text-charcoal-900' : 'border-red-500 bg-red-50 text-red-700'
+                        }`}
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-wood-dark font-mono pointer-events-none select-none">
                       cm
@@ -431,16 +428,16 @@ export default function CustomizerPage() {
               </div>
             </div>
 
-            {/* 3. MATERIAL (FIXED - KAYU JATI SOLID) */}
+            {/* 3. MATERIAL (FIXED - KAYU JATI PERHUTANI) */}
             <div className="space-y-3 pb-6 border-b border-warm-border/60">
               <h3 className="font-serif font-bold text-lg text-charcoal-900">Bahan Kayu</h3>
               <div className="p-4 bg-cream-200/70 rounded-xl border border-warm-border text-xs space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-charcoal-900">Kayu Jati Solid</span>
+                  <span className="font-bold text-charcoal-900">Kayu Jati H</span>
                   <span className="px-2 py-0.5 bg-wood/10 text-wood-dark text-[10px] font-bold rounded-full border border-wood/20">Standar</span>
                 </div>
                 <p className="text-warm-gray text-[11px]">
-                  Semua produk dibuat menggunakan kayu Jati solid oven kelas premium dengan daya tahan maksimal dan keindahan serat kayu alami.
+                  Semua produk dibuat menggunakan kayu Jati Perhutani kelas premium dengan daya tahan maksimal dan keindahan serat kayu alami.
                 </p>
               </div>
             </div>

@@ -25,7 +25,7 @@ export function generateWhatsAppPaymentUrl(order: OrderData): string {
     `📌 *ID Pesanan*: ${order.orderId}`,
     `🛋️ *Produk*: ${order.productName}`,
     `📐 *Ukuran Custom*: ${order.length} x ${order.width} x ${order.height} cm`,
-    `🪵 *Bahan Kayu*: ${order.material || 'Kayu Jati Solid'}`,
+    `🪵 *Bahan Kayu*: ${order.material || 'Kayu Jati Perhutani'}`,
     `🎨 *Finishing*: ${order.finishing || 'Natural Wood Finish'}`,
     `💰 *Harga*: ${priceDisplay}`,
     order.additionalRequest && order.additionalRequest !== '-' ? `📝 *Catatan Tambahan*: ${order.additionalRequest}` : '',
