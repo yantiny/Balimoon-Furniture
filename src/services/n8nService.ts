@@ -437,11 +437,13 @@ export async function submitOrderRequest(customization: CustomizationState): Pro
           ? result[0]
           : (result?.pesanan || result?.order || result?.data || result);
 
-        const returnedId =
+        let returnedId =
           result?.pesanan?.idPesanan ||
           result?.idPesanan ||
           result?.["Id-Pemesanan"] ||
           result?.orderId ||
+          result?.id ||
+          result?.ID ||
           (returnedObj && (
             returnedObj.idPesanan ||
             returnedObj.id_pesanan ||
@@ -451,10 +453,22 @@ export async function submitOrderRequest(customization: CustomizationState): Pro
             returnedObj['Id_Pemesanan'] ||
             returnedObj['id_pemesanan'] ||
             returnedObj.orderId ||
+            returnedObj.id ||
+            returnedObj.ID ||
             returnedObj?.pesanan?.idPesanan
           )) || '';
 
-        const cleanId = String(returnedId).trim();
+        let cleanId = String(returnedId).trim();
+
+        // Fallback Order ID generation if n8n returned HTTP 200 OK but no order ID in JSON payload
+        if (!cleanId || cleanId === 'undefined' || cleanId === 'null') {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = String(now.getMonth() + 1).padStart(2, '0');
+          const day = String(now.getDate()).padStart(2, '0');
+          const randNum = Math.floor(100 + Math.random() * 900);
+          cleanId = `CF-${year}${month}${day}-${randNum}`;
+        }
 
         const baseFallback: OrderData = {
           orderId: cleanId,
