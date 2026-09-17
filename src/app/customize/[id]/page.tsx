@@ -505,7 +505,7 @@ export default function CustomizerPage() {
                     required
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
-                    placeholder="08123456789"
+                    placeholder="083125400242"
                     className="w-full p-3 rounded-xl bg-cream-100 border border-warm-border text-base sm:text-xs text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-wood-medium"
                   />
                 </div>

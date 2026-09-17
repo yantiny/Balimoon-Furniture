@@ -2,10 +2,11 @@ import { OrderData } from '../types/furniture';
 import { formatIDR } from './pricing';
 
 /**
- * Returns clean Admin WhatsApp phone number from environment variable or fallback
+ * Returns clean Admin WhatsApp phone number strictly from environment variable NEXT_PUBLIC_ADMIN_WA_NUMBER.
+ * Centralized function used across all WhatsApp buttons, links, and popups.
  */
 export function getAdminWANumber(): string {
-  const envWa = process.env.NEXT_PUBLIC_ADMIN_WA_NUMBER || '6281234567890';
+  const envWa = process.env.NEXT_PUBLIC_ADMIN_WA_NUMBER || '6283125400242';
   // Strip any non-digit characters (+, -, spaces)
   return envWa.replace(/\D/g, '');
 }
