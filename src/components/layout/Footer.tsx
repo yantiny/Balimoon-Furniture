@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { Hammer, ShieldCheck, Ruler, Box, Sparkles, MessageCircle } from 'lucide-react';
+import { ShieldCheck, Ruler, Box, Sparkles, MessageCircle } from 'lucide-react';
 import { generateWhatsAppChatUrl } from '../../utils/whatsapp';
+import { ChairLogo } from '../ui/ChairLogo';
 
 
 export const Footer = () => {
@@ -58,10 +59,10 @@ export const Footer = () => {
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-wood text-white flex items-center justify-center">
-                <Hammer className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-xl bg-wood text-white flex items-center justify-center p-1.5">
+                <ChairLogo className="w-6 h-6 text-white" />
               </div>
-              <span className="font-serif text-xl font-bold tracking-tight text-white">
+              <span className="font-poppins text-xl font-bold tracking-tight text-white">
                 BALIMOON FURNITURE
               </span>
             </div>
@@ -81,7 +82,7 @@ export const Footer = () => {
                 <Link href="/furniture" className="hover:text-white transition-colors">Katalog Mebel</Link>
               </li>
               <li>
-                <Link href="/customize/kursi-kayu-01" className="hover:text-white transition-colors">Kustomisasi 3D</Link>
+                <Link href="/customize/meja-rias-01" className="hover:text-white transition-colors">Kustomisasi 3D</Link>
 
               </li>
               <li>
@@ -110,9 +111,9 @@ export const Footer = () => {
               href={generateWhatsAppChatUrl('Halo Admin Bali Moon Furniture, saya ingin bertanya tentang custom furniture.')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 bg-emerald-700/30 hover:bg-emerald-600/40 text-emerald-300 hover:text-emerald-200 text-xs font-medium rounded-xl border border-emerald-500/40 transition-colors"
+              className="inline-flex items-center gap-2 px-3.5 py-2 bg-wood/20 hover:bg-wood/35 text-wood-light hover:text-white text-xs font-medium rounded-xl border border-wood-light/40 transition-colors"
             >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <MessageCircle className="w-4 h-4 text-wood-light" />
               <span>Chat WA Admin</span>
             </a>
           </div>
@@ -121,9 +122,8 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-charcoal-700 flex flex-col sm:flex-row items-center justify-between text-xs text-warm-gray gap-4">
+        <div className="pt-8 border-t border-charcoal-700 flex items-center justify-center text-xs text-warm-gray text-center">
           <p>© {new Date().getFullYear()} BALIMOON FURNITURE. Hak Cipta Dilindungi.</p>
-          <p className="text-[11px] text-warm-gray/80">Dibuat dengan Next.js, React Three Fiber, n8n & Google Sheets</p>
         </div>
 
       </div>

@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Hammer, Menu, X, Compass, Box, SlidersHorizontal, Search } from 'lucide-react';
+import { Menu, X, Compass, Box, SlidersHorizontal, Search } from 'lucide-react';
+import { ChairLogo } from '../ui/ChairLogo';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,8 +13,7 @@ export const Navbar = () => {
   const navLinks = [
     { href: '/', label: 'Beranda', icon: Compass },
     { href: '/furniture', label: 'Katalog Mebel', icon: Box },
-    { href: '/customize/kursi-kayu-01', label: 'Kustomisasi 3D', icon: SlidersHorizontal },
-
+    { href: '/customize/meja-rias-01', label: 'Kustomisasi 3D', icon: SlidersHorizontal },
     { href: '/track', label: 'Cek Pesanan', icon: Search },
   ];
 
@@ -31,15 +31,15 @@ export const Navbar = () => {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-wood text-white flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
-              <Hammer className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-wood text-white flex items-center justify-center shadow-md transition-transform group-hover:scale-105 p-1.5">
+              <ChairLogo className="w-7 h-7 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-xl font-bold tracking-tight text-charcoal-900 group-hover:text-wood transition-colors">
+              <span className="font-poppins text-xl font-bold tracking-tight text-charcoal-900 group-hover:text-wood transition-colors">
                 BALI MOON FURNITURE
               </span>
-              <span className="text-[10px] tracking-widest uppercase font-medium text-wood-medium">
-                Mebel Kayu Custom
+              <span className="text-[10px] tracking-widest uppercase font-semibold text-wood-medium">
+                Made to Order
               </span>
             </div>
           </Link>
@@ -53,8 +53,8 @@ export const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${active
-                      ? 'bg-wood-medium text-white shadow-sm'
-                      : 'text-charcoal-700 hover:text-charcoal-900 hover:bg-cream-200/70'
+                    ? 'bg-wood-medium text-white shadow-sm'
+                    : 'text-charcoal-700 hover:text-charcoal-900 hover:bg-cream-200/70'
                     }`}
                 >
                   {link.label}
@@ -96,8 +96,8 @@ export const Navbar = () => {
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all ${active
-                    ? 'bg-wood-medium text-white shadow-sm'
-                    : 'text-charcoal-700 hover:bg-cream-200'
+                  ? 'bg-wood-medium text-white shadow-sm'
+                  : 'text-charcoal-700 hover:bg-cream-200'
                   }`}
               >
                 <Icon className="w-5 h-5" />

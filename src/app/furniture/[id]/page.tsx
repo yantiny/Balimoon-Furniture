@@ -49,7 +49,7 @@ export default function ProductDetailPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
-      
+
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs text-warm-gray">
         <Link href="/furniture" className="hover:text-charcoal-900 transition-colors flex items-center gap-1">
@@ -62,68 +62,79 @@ export default function ProductDetailPage() {
 
       {/* Main Grid Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
+
         {/* Left Column: Gallery & Interactive 3D Quick View */}
         <div className="lg:col-span-7 space-y-6">
-          
+
           {/* Active Display Container */}
           <div className="relative rounded-2xl overflow-hidden bg-white border border-warm-border/80 shadow-soft aspect-[4/3]">
-            <FurnitureCanvas
-              key={`main-canvas-${activeViewIndex}`}
-              modelType={product.modelType}
-              modelUrl={product.model3D}
-              length={product.length.default}
-              width={product.width.default}
-              height={product.height.default}
-              defaultLength={product.length.default}
-              defaultWidth={product.width.default}
-              defaultHeight={product.height.default}
-              showDimensions={false}
-              hideUIControls={activeViewIndex !== 3}
-              enableControls={activeViewIndex === 3}
-              cameraPosition={activeAngle ? activeAngle.position : [2.0, 1.2, 2.2]}
-            />
-
-            {/* View Mode Badge */}
-            <div className="absolute top-4 left-4 z-20 bg-charcoal-900/80 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-md flex items-center gap-1.5 border border-white/10">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>
-                {activeViewIndex === 3 ? 'Model 3D Interaktif (360°)' : `${activeAngle?.label} - ${activeAngle?.name} (Asset 3D GLB)`}
-              </span>
-            </div>
+            {activeViewIndex === 3 || !product.gallery || !product.gallery[activeViewIndex] ? (
+              <FurnitureCanvas
+                key={`main-canvas-${activeViewIndex}`}
+                modelType={product.modelType}
+                modelUrl={product.model3D}
+                length={product.length.default}
+                width={product.width.default}
+                height={product.height.default}
+                defaultLength={product.length.default}
+                defaultWidth={product.width.default}
+                defaultHeight={product.height.default}
+                showDimensions={false}
+                hideUIControls={activeViewIndex !== 3}
+                enableControls={activeViewIndex === 3}
+                cameraPosition={activeAngle?.position}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-cream-100/60 p-4">
+                <img
+                  src={product.gallery[activeViewIndex]}
+                  alt={`${product.name} ${activeViewIndex + 1}`}
+                  className="w-full h-full object-contain drop-shadow-sm rounded-xl"
+                />
+              </div>
+            )}
           </div>
 
-          {/* 3 Photos (3D GLB Angles) + 1 Interactive Preview 3D Thumbnails */}
+          {/* 3 Photos (Gallery / 3D Angles) + 1 Interactive Preview 3D Thumbnails */}
           <div className="grid grid-cols-4 gap-3">
-            {/* 3 Photos derived from GLB Asset */}
-            {ANGLE_PRESETS.map((preset, index) => {
+            {/* 3 Photo Thumbnails */}
+            {[0, 1, 2].map((index) => {
               const isSelected = activeViewIndex === index;
+              const photoUrl = product.gallery && product.gallery[index];
+              const preset = ANGLE_PRESETS[index];
               return (
                 <button
                   key={index}
                   onClick={() => setActiveViewIndex(index)}
-                  className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-cream-200 ${
-                    isSelected
-                      ? 'border-amber-500 ring-2 ring-amber-500/30 opacity-100 scale-105 shadow-md'
-                      : 'border-warm-border opacity-80 hover:opacity-100'
-                  }`}
+                  className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-cream-100 ${isSelected
+                    ? 'border-amber-500 ring-2 ring-amber-500/30 opacity-100 scale-105 shadow-md'
+                    : 'border-warm-border opacity-80 hover:opacity-100'
+                    }`}
                 >
-                  <FurnitureCanvas
-                    modelType={product.modelType}
-                    modelUrl={product.model3D}
-                    length={product.length.default}
-                    width={product.width.default}
-                    height={product.height.default}
-                    defaultLength={product.length.default}
-                    defaultWidth={product.width.default}
-                    defaultHeight={product.height.default}
-                    showDimensions={false}
-                    hideUIControls={true}
-                    enableControls={false}
-                    cameraPosition={preset.position}
-                  />
+                  {photoUrl ? (
+                    <img
+                      src={photoUrl}
+                      alt={`Foto ${index + 1}`}
+                      className="w-full h-full object-contain p-1"
+                    />
+                  ) : (
+                    <FurnitureCanvas
+                      modelType={product.modelType}
+                      modelUrl={product.model3D}
+                      length={product.length.default}
+                      width={product.width.default}
+                      height={product.height.default}
+                      defaultLength={product.length.default}
+                      defaultWidth={product.width.default}
+                      defaultHeight={product.height.default}
+                      showDimensions={false}
+                      hideUIControls={true}
+                      enableControls={false}
+                      cameraPosition={preset?.position}
+                    />
+                  )}
                   <span className="absolute bottom-1 left-1 z-10 bg-charcoal-900/80 text-white text-[9px] font-semibold px-1.5 py-0.5 rounded shadow">
-                    {preset.label}
+                    Foto {index + 1}
                   </span>
                 </button>
               );
@@ -132,11 +143,10 @@ export default function ProductDetailPage() {
             {/* 4th Thumbnail: Interactive PREVIEW 3D */}
             <button
               onClick={() => setActiveViewIndex(3)}
-              className={`relative aspect-square rounded-xl border-2 transition-all shrink-0 flex flex-col items-center justify-center gap-1 bg-cream-200 text-charcoal-900 ${
-                activeViewIndex === 3
-                  ? 'border-amber-500 bg-amber-500/10 ring-2 ring-amber-500/30 font-bold scale-105 shadow-md'
-                  : 'border-warm-border hover:bg-cream-300'
-              }`}
+              className={`relative aspect-square rounded-xl border-2 transition-all shrink-0 flex flex-col items-center justify-center gap-1 bg-cream-200 text-charcoal-900 ${activeViewIndex === 3
+                ? 'border-amber-500 bg-amber-500/10 ring-2 ring-amber-500/30 font-bold scale-105 shadow-md'
+                : 'border-warm-border hover:bg-cream-300'
+                }`}
             >
               <Box className="w-6 h-6 text-amber-600 animate-pulse" />
               <span className="text-[10px] font-bold uppercase tracking-wider text-charcoal-900">PREVIEW 3D</span>
@@ -147,17 +157,17 @@ export default function ProductDetailPage() {
 
         {/* Right Column: Specs, Dimensions, & Action CTA */}
         <div className="lg:col-span-5 space-y-8">
-          
+
           <div className="space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cream-200 text-wood-dark text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-wood-medium" />
               <span>Pesanan Khusus (Made To Order)</span>
             </div>
-            
+
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal-900">
               {product.name}
             </h1>
-            
+
             <p className="text-warm-gray text-sm leading-relaxed">
               {product.description}
             </p>
@@ -177,7 +187,7 @@ export default function ProductDetailPage() {
           {/* Product Specifications */}
           <div className="space-y-4 pt-2">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-charcoal-900">Spesifikasi Teknis</h3>
-            
+
             <div className="grid grid-cols-2 gap-4 text-xs">
               <div className="p-3.5 bg-cream-100 rounded-xl border border-warm-border/60">
                 <span className="text-warm-gray block mb-1">Material Utama</span>

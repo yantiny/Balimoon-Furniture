@@ -20,6 +20,7 @@ interface FurnitureCanvasProps {
   showDimensions?: boolean;
   hideUIControls?: boolean;
   cameraPosition?: [number, number, number];
+  modelPosition?: [number, number, number];
   enableControls?: boolean;
 }
 
@@ -35,6 +36,7 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
   showDimensions = true,
   hideUIControls = false,
   cameraPosition,
+  modelPosition = [0, 0, 0],
   enableControls = true
 }) => {
 
@@ -48,9 +50,8 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
   const initialCamPos = cameraPosition || [2.0, 1.2, 2.2];
 
   return (
-    <div className={`relative w-full h-full bg-gradient-to-b from-cream-100 via-cream-200 to-cream-300/80 overflow-hidden group ${
-      hideUIControls ? 'rounded-t-2xl' : 'h-[320px] sm:h-[420px] md:h-[520px] rounded-2xl shadow-inner border border-warm-border/60'
-    }`}>
+    <div className={`relative w-full h-full bg-gradient-to-b from-cream-100 via-cream-200 to-cream-300/80 overflow-hidden group ${hideUIControls ? 'rounded-t-2xl' : 'h-[300px] xs:h-[360px] sm:h-[420px] md:h-[480px] lg:h-[520px] rounded-2xl shadow-inner border border-warm-border/60'
+      }`}>
       {/* Top Floating Control Bar (Only shown on full customizer view when controls enabled) */}
       {!hideUIControls && enableControls && (
         <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
@@ -63,11 +64,10 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
             <button
               onClick={() => setAutoRotate(!autoRotate)}
               title="Putar Otomatis"
-              className={`p-2 rounded-full backdrop-blur-md shadow-sm border transition-all text-xs flex items-center gap-1.5 ${
-                autoRotate
-                  ? 'bg-wood-medium text-white border-wood-medium'
-                  : 'bg-white/80 hover:bg-white text-charcoal-700 border-warm-border/60'
-              }`}
+              className={`p-2 rounded-full backdrop-blur-md shadow-sm border transition-all text-xs flex items-center gap-1.5 ${autoRotate
+                ? 'bg-wood-medium text-white border-wood-medium'
+                : 'bg-white/80 hover:bg-white text-charcoal-700 border-warm-border/60'
+                }`}
             >
               <RefreshCw className={`w-3.5 h-3.5 ${autoRotate ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline font-medium">{autoRotate ? 'Berputar' : 'Putar Otomatis'}</span>
@@ -91,18 +91,18 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
         camera={{ position: initialCamPos, fov: 38 }}
         className={`w-full h-full ${enableControls ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'}`}
       >
-        <ambientLight intensity={0.95} />
+        <ambientLight intensity={0.85} />
         <directionalLight
           position={[5, 8, 5]}
-          intensity={1.3}
+          intensity={1.1}
           castShadow
           shadow-mapSize={2048}
           shadow-bias={-0.0001}
         />
-        <directionalLight position={[-5, 5, -5]} intensity={0.5} />
+        <directionalLight position={[-5, 5, -5]} intensity={0.4} />
 
         <Suspense fallback={null}>
-          <Center>
+          <Center position={modelPosition}>
             {modelUrl ? (
               <GLBFurnitureModel
                 modelUrl={modelUrl}
@@ -159,9 +159,11 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
       {!hideUIControls && enableControls && (
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none w-max max-w-[90%]">
           <div className="px-3 py-1.5 bg-charcoal-900/80 backdrop-blur-md text-white text-[11px] rounded-full shadow-md flex items-center justify-center gap-2 text-center">
-            <span>1 Jari / Drag: Putar</span>
+            <span>Klik & Drag: Putar</span>
             <span className="text-amber-400">•</span>
-            <span>Pinch / Scroll: Zoom</span>
+            <span>Scroll: Zoom</span>
+            <span className="text-amber-400">•</span>
+            <span>Shift + Drag: Geser</span>
           </div>
         </div>
       )}

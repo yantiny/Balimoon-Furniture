@@ -37,10 +37,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-charcoal-900 shadow-sm border border-warm-border/50 uppercase tracking-wider">
           {CATEGORY_LABELS[product.category] || product.category}
         </div>
-        <div className="absolute top-3 right-3 z-10 bg-amber-500 text-charcoal-900 px-2.5 py-1 rounded-full text-[10px] font-bold shadow-sm flex items-center gap-1">
-          <Sparkles className="w-3 h-3 text-charcoal-900" />
-          <span>Model 3D GLB</span>
-        </div>
       </div>
 
       {/* Product Content */}

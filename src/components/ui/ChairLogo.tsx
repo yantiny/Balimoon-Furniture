@@ -1,0 +1,62 @@
+import React from 'react';
+
+export const ChairLogo: React.FC<{ className?: string; color?: string }> = ({
+  className = "w-6 h-6",
+  color = "currentColor"
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 500 500"
+      fill={color}
+      className={className}
+    >
+      {/* Top Crest Rail */}
+      <path d="M250 42 C 320 32 400 20 428 35 C 428 48 420 70 412 85 C 340 50 280 58 250 68 Z" />
+
+      {/* Left Back Post */}
+      <path d="M252 42 L 232 245 L 255 245 L 270 65 Z" />
+
+      {/* Right Back Post */}
+      <path d="M428 35 L 370 260 L 396 260 L 428 65 Z" />
+
+      {/* 5 Vertical Slats */}
+      <path d="M285 58 L 268 225 L 280 225 L 297 58 Z" />
+      <path d="M312 52 L 295 225 L 307 225 L 324 52 Z" />
+      <path d="M338 46 L 322 225 L 334 225 L 350 46 Z" />
+      <path d="M365 40 L 349 225 L 361 225 L 377 40 Z" />
+      <path d="M391 34 L 376 225 L 388 225 L 403 34 Z" />
+
+      {/* Lower Back Rail */}
+      <path d="M234 218 L 380 225 L 380 240 L 232 233 Z" />
+
+      {/* Seat Top (Main Surface) */}
+      <path d="M85 240 L 395 240 L 370 285 L 85 265 Z" />
+
+      {/* Seat Front Highlight Rim Line */}
+      <path d="M88 243 C 180 252 280 256 366 280 L 362 283 C 280 260 180 255 88 246 Z" fill="currentColor" opacity="0.35" />
+
+      {/* Seat Apron (Front Side Band) */}
+      <path d="M85 265 L 370 285 L 370 325 L 85 295 Z" />
+
+      {/* Front-Left Leg */}
+      <polygon points="85,295 110,295 106,450 85,450" />
+
+      {/* Front-Right (Center) Leg */}
+      <polygon points="225,310 250,310 246,485 225,485" />
+
+      {/* Back-Left Leg */}
+      <polygon points="255,270 280,270 280,412 260,412" />
+
+      {/* Back-Right Leg */}
+      <polygon points="360,320 385,305 400,448 375,448" />
+
+      {/* Leg Stretchers (Rungs) */}
+      <polygon points="102,345 232,330 232,345 102,360" />
+      <polygon points="100,360 268,368 268,382 100,374" />
+      <polygon points="240,365 375,350 375,362 240,378" />
+    </svg>
+  );
+};
+
+export default ChairLogo;

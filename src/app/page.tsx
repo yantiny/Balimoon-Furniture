@@ -1,12 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import ProductCard from '../components/ui/ProductCard';
-import { STATIC_PRODUCTS } from '../data/products';
+import { STATIC_PRODUCTS, getProductById } from '../data/products';
+import { Product } from '../types/furniture';
 import { FurnitureCanvas } from '../components/3d/FurnitureCanvas';
-import { Ruler, ShieldCheck, Hammer, Move3d, ArrowRight, CheckCircle2, Sparkles, SlidersHorizontal } from 'lucide-react';
+import { ChairLogo } from '../components/ui/ChairLogo';
+import { Ruler, ShieldCheck, Hammer, Move3d, ArrowRight, CheckCircle2, SlidersHorizontal, Star, Quote } from 'lucide-react';
 
 export default function HomePage() {
-  const featuredProducts = STATIC_PRODUCTS.slice(0, 3);
+  // Ubah 3 ID produk di bawah ini secara manual untuk mengganti 3 mebel yang tampil di depan:
+  const featuredIds = ['meja-kecil-coffee-05', 'meja-tinggi-makan-06', 'lemari-pakaian-04'];
+  const featuredProducts = featuredIds
+    .map((id) => getProductById(id))
+    .filter((p): p is Product => p !== undefined);
 
   return (
     <div className="space-y-20 pb-20">
@@ -17,18 +23,18 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
             {/* Left Hero Content */}
-            <div className="lg:col-span-6 space-y-6">
+            <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-wood/10 text-wood-dark border border-wood/20 text-xs font-semibold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-wood-medium" />
+                <ChairLogo className="w-4 h-4 text-wood-medium" />
                 <span>Mebel Custom Hasil Karya Pengrajin</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-charcoal-900 tracking-tight leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-poppins font-extrabold text-charcoal-900 tracking-tight leading-[1.15]">
                 Mebel yang Dirancang Khusus untuk Ruangan Anda
               </h1>
 
               <p className="text-base sm:text-lg text-warm-gray leading-relaxed max-w-xl">
-                Setiap furnitur dibuat sesuai pesanan. Pilih desain favorit Anda, tentukan ukuran presisi hingga milimeter, dan visualisasikan dalam bentuk 3D interaktif sebelum memesan.
+                Setiap furnitur dibuat sesuai pesanan. Pilih desain favorit Anda, tentukan ukuran presisi dan visualisasikan dalam bentuk 3D interaktif sebelum memesan.
               </p>
 
               {/* CTAs */}
@@ -42,7 +48,7 @@ export default function HomePage() {
                 </Link>
 
                 <Link
-                  href="/customize/kursi-kayu-01"
+                  href="/customize/meja-rias-01"
                   className="px-7 py-4 rounded-xl bg-white border border-warm-border text-charcoal-800 font-semibold hover:border-charcoal-900 hover:bg-cream-200/50 transition-all flex items-center justify-center gap-2 text-base shadow-sm"
                 >
                   <SlidersHorizontal className="w-4 h-4 text-wood-medium" />
@@ -54,11 +60,11 @@ export default function HomePage() {
               <div className="pt-6 border-t border-warm-border/60 grid grid-cols-3 gap-4 text-xs text-charcoal-700">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-wood-medium shrink-0" />
-                  <span>Tanpa Penumpukan Stok</span>
+                  <span>Atur Ukuran Sesuai Kebutuhan</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-wood-medium shrink-0" />
-                  <span>Kayu Solid Oven</span>
+                  <span>Pratinjau 3D Realtime</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-wood-medium shrink-0" />
@@ -68,13 +74,13 @@ export default function HomePage() {
             </div>
 
             {/* Right Hero 3D Preview Card */}
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-5">
               <div className="relative">
                 <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-wood-light via-wood-medium to-charcoal-900 opacity-20 blur-xl"></div>
                 <div className="relative">
                   <FurnitureCanvas
                     modelType="dining-table"
-                    modelUrl="/models/asset 3D/mejatinggi.glb"
+                    modelUrl="/models/asset 3D/nakas.glb"
                     length={160}
                     width={80}
                     height={76}
@@ -85,7 +91,7 @@ export default function HomePage() {
                   />
 
                   <div className="mt-3 flex items-center justify-between text-xs text-warm-gray px-2">
-                    <span className="font-medium text-charcoal-900">Meja Makan Custom</span>
+                    <span className="font-medium text-charcoal-900">Nakas minimalis</span>
                     <span className="text-wood font-semibold">Simulasi Model 3D</span>
                   </div>
 
@@ -216,7 +222,99 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. BOTTOM CTA SECTION */}
+      {/* 5. TESTIMONIALS SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-cream-200 text-wood-dark text-xs font-semibold rounded-full border border-warm-border">
+            <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+            <span>Ulasan & Testimoni Pelanggan</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal-900">
+            Pengalaman Mereka Bersama Bali Moon Furniture
+          </h2>
+          <p className="text-warm-gray text-sm">
+            Kepuasan pelanggan yang telah memesan mebel kayu custom dengan ukuran presisi dan kualitas tinggi.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {/* Testimonial Card 1 */}
+          <div className="bg-white p-7 rounded-3xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-6 relative overflow-hidden">
+            <Quote className="w-10 h-10 text-wood/10 absolute top-4 right-4 pointer-events-none" />
+            <div className="space-y-4 relative z-10">
+              <div className="flex items-center gap-1 text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                ))}
+              </div>
+              <p className="text-charcoal-800 text-sm italic leading-relaxed">
+                &ldquo;Sangat puas! Fitur pratinjau 3D-nya luar biasa membantu untuk ukur sudut ruang tamu yang terbatas. Hasil meja makan kayunya presisi sekali dan finishing jati alaminya sangat halus.&rdquo;
+              </p>
+            </div>
+            <div className="pt-4 border-t border-warm-border/50 flex items-center justify-between relative z-10">
+              <div>
+                <h4 className="font-serif font-bold text-sm text-charcoal-900">Budi Santoso</h4>
+                <p className="text-[11px] text-warm-gray">Jakarta Selatan • Pemesan Meja Makan</p>
+              </div>
+              <span className="px-2.5 py-1 bg-cream-200 text-wood-dark text-[10px] font-bold rounded-full border border-warm-border/40">
+                Terverifikasi
+              </span>
+            </div>
+          </div>
+
+          {/* Testimonial Card 2 */}
+          <div className="bg-white p-7 rounded-3xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-6 relative overflow-hidden">
+            <Quote className="w-10 h-10 text-wood/10 absolute top-4 right-4 pointer-events-none" />
+            <div className="space-y-4 relative z-10">
+              <div className="flex items-center gap-1 text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                ))}
+              </div>
+              <p className="text-charcoal-800 text-sm italic leading-relaxed">
+                &ldquo;Kayu Jati Perhutani nya benar-benar kokoh dan tebal. Lemari sleding custom yang saya pesan pas sekali di kamar tidur. Komunikasi & tracking pesanan online-nya sangat transparan.&rdquo;
+              </p>
+            </div>
+            <div className="pt-4 border-t border-warm-border/50 flex items-center justify-between relative z-10">
+              <div>
+                <h4 className="font-serif font-bold text-sm text-charcoal-900">Ni Made Swasti</h4>
+                <p className="text-[11px] text-warm-gray">Denpasar, Bali • Pemesan Lemari Custom</p>
+              </div>
+              <span className="px-2.5 py-1 bg-cream-200 text-wood-dark text-[10px] font-bold rounded-full border border-warm-border/40">
+                Terverifikasi
+              </span>
+            </div>
+          </div>
+
+          {/* Testimonial Card 3 */}
+          <div className="bg-white p-7 rounded-3xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-6 relative overflow-hidden">
+            <Quote className="w-10 h-10 text-wood/10 absolute top-4 right-4 pointer-events-none" />
+            <div className="space-y-4 relative z-10">
+              <div className="flex items-center gap-1 text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                ))}
+              </div>
+              <p className="text-charcoal-800 text-sm italic leading-relaxed">
+                &ldquo;Meja nakas minimalisnya cantik banget di samping tempat tidur. Dikerjakan rapi, pengiriman aman sampai Surabaya. Sangat recommended buat yang butuh mebel custom presisi!&rdquo;
+              </p>
+            </div>
+            <div className="pt-4 border-t border-warm-border/50 flex items-center justify-between relative z-10">
+              <div>
+                <h4 className="font-serif font-bold text-sm text-charcoal-900">Hendrik Wijaya</h4>
+                <p className="text-[11px] text-warm-gray">Surabaya • Pemesan Meja Nakas</p>
+              </div>
+              <span className="px-2.5 py-1 bg-cream-200 text-wood-dark text-[10px] font-bold rounded-full border border-warm-border/40">
+                Terverifikasi
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 6. BOTTOM CTA SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-charcoal-900 text-cream-100 rounded-3xl p-10 md:p-16 relative overflow-hidden shadow-elevated">
           <div className="relative z-10 max-w-2xl space-y-6">
@@ -224,7 +322,7 @@ export default function HomePage() {
               Siap Merancang Mebel Impian Anda?
             </h2>
             <p className="text-warm-gray text-base leading-relaxed">
-              Mulai buat mebel yang pas dengan ukuran dan tata letak ruangan Anda hingga ke sentimeter terkecil.
+              Mulai buat mebel yang pas dengan ukuran dan tata letak ruangan Anda hingga pas dengan ukuran ruang Anda.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <Link

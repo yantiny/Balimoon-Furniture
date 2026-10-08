@@ -30,7 +30,7 @@ import {
 export default function CustomizerPage() {
   const params = useParams();
   const router = useRouter();
-  const productId = Array.isArray(params?.id) ? params.id[0] : (params?.id as string) || 'kursi-kayu-01';
+  const productId = Array.isArray(params?.id) ? params.id[0] : (params?.id as string) || 'meja-rias-01';
 
 
   const product = useMemo(() => {
@@ -433,7 +433,7 @@ export default function CustomizerPage() {
               <h3 className="font-serif font-bold text-lg text-charcoal-900">Bahan Kayu</h3>
               <div className="p-4 bg-cream-200/70 rounded-xl border border-warm-border text-xs space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-charcoal-900">Kayu Jati H</span>
+                  <span className="font-bold text-charcoal-900">Kayu Jati Perhutani</span>
                   <span className="px-2 py-0.5 bg-wood/10 text-wood-dark text-[10px] font-bold rounded-full border border-wood/20">Standar</span>
                 </div>
                 <p className="text-warm-gray text-[11px]">

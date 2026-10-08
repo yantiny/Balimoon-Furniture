@@ -43,13 +43,13 @@ export const GLBFurnitureModel: React.FC<GLBFurnitureModelProps> = ({
     cloned.position.set(-center.x, -box.min.y, -center.z);
     inner.add(cloned);
 
-    // Base framing scale so initial model fits nicely in 3D viewport
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const baseScale = maxDim > 0 ? 1.35 / maxDim : 1;
-
     const defL = defaultLength || (size.x > 0 ? size.x * 100 : 100);
     const defW = defaultWidth || (size.z > 0 ? size.z * 100 : 100);
     const defH = defaultHeight || (size.y > 0 ? size.y * 100 : 100);
+
+    // Optimal base framing scale so all GLB models fit nicely and balanced in the 3D viewport
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const baseScale = maxDim > 0 ? 1.35 / maxDim : 1;
 
     // Compare GLB aspect ratio with default dimensions ratio to detect if X axis represents Width or Length
     const ratioActual = size.z > 0 ? size.x / size.z : 1;
@@ -73,11 +73,26 @@ export const GLBFurnitureModel: React.FC<GLBFurnitureModelProps> = ({
       sZ = defW > 0 ? width / defW : 1;
     }
 
-    // Enable shadows on all mesh children
+    // Enable shadows and adjust material roughness for natural matte wood finish (less glossy)
     cloned.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
         child.castShadow = true;
         child.receiveShadow = true;
+
+        const mesh = child as THREE.Mesh;
+        if (mesh.material) {
+          const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+          materials.forEach((mat) => {
+            if ('roughness' in mat) {
+              // Increase roughness to 0.82 to make wood look natural matte rather than shiny/glossy
+              (mat as THREE.MeshStandardMaterial).roughness = 0.82;
+            }
+            if ('metalness' in mat) {
+              // Reduce metalness to 0.02 to avoid metallic specularity on wood
+              (mat as THREE.MeshStandardMaterial).metalness = 0.02;
+            }
+          });
+        }
       }
     });
 
