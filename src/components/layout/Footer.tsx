@@ -82,7 +82,7 @@ export const Footer = () => {
                 <Link href="/furniture" className="hover:text-white transition-colors">Katalog Mebel</Link>
               </li>
               <li>
-                <Link href="/customize/meja-rias-01" className="hover:text-white transition-colors">Kustomisasi 3D</Link>
+                <Link href="/customize/kursi-kayu-01" className="hover:text-white transition-colors">Kustomisasi 3D</Link>
 
               </li>
               <li>

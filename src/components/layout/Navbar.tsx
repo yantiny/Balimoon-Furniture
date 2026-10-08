@@ -13,7 +13,7 @@ export const Navbar = () => {
   const navLinks = [
     { href: '/', label: 'Beranda', icon: Compass },
     { href: '/furniture', label: 'Katalog Mebel', icon: Box },
-    { href: '/customize/meja-rias-01', label: 'Kustomisasi 3D', icon: SlidersHorizontal },
+    { href: '/customize/kursi-kayu-01', label: 'Kustomisasi 3D', icon: SlidersHorizontal },
     { href: '/track', label: 'Cek Pesanan', icon: Search },
   ];
 

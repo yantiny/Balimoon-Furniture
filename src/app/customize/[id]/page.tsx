@@ -30,7 +30,7 @@ import {
 export default function CustomizerPage() {
   const params = useParams();
   const router = useRouter();
-  const productId = Array.isArray(params?.id) ? params.id[0] : (params?.id as string) || 'meja-rias-01';
+  const productId = Array.isArray(params?.id) ? params.id[0] : (params?.id as string) || 'kursi-kayu-01';
 
 
   const product = useMemo(() => {
@@ -197,6 +197,7 @@ export default function CustomizerPage() {
                 defaultWidth={product.width.default}
                 defaultHeight={product.height.default}
                 showDimensions={true}
+                scale3D={product.scale3D}
               />
 
 

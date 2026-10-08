@@ -67,7 +67,7 @@ export default function ProductDetailPage() {
         <div className="lg:col-span-7 space-y-6">
 
           {/* Active Display Container */}
-          <div className="relative rounded-2xl overflow-hidden bg-white border border-warm-border/80 shadow-soft aspect-[4/3]">
+          <div className="relative rounded-2xl overflow-hidden bg-white border border-warm-border/80 shadow-soft aspect-square sm:aspect-[4/3]">
             {activeViewIndex === 3 || !product.gallery || !product.gallery[activeViewIndex] ? (
               <FurnitureCanvas
                 key={`main-canvas-${activeViewIndex}`}
@@ -83,6 +83,7 @@ export default function ProductDetailPage() {
                 hideUIControls={activeViewIndex !== 3}
                 enableControls={activeViewIndex === 3}
                 cameraPosition={activeAngle?.position}
+                scale3D={product.scale3D}
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-cream-100/60 p-4">

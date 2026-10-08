@@ -32,6 +32,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           defaultHeight={product.height.default}
           showDimensions={false}
           hideUIControls={true}
+          scale3D={product.scale3D}
         />
 
         <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-charcoal-900 shadow-sm border border-warm-border/50 uppercase tracking-wider">

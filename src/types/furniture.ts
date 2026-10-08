@@ -29,6 +29,7 @@ export interface Product {
   image: string;
   gallery: string[];
   productionTime: string;
+  scale3D?: number; // Optional visual 3D scale multiplier (e.g. 0.65 for compact items like Nakas)
   length: DimensionRange; // in cm
   width: DimensionRange; // in cm
   height: DimensionRange; // in cm

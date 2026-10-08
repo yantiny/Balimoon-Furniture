@@ -48,7 +48,7 @@ export default function HomePage() {
                 </Link>
 
                 <Link
-                  href="/customize/meja-rias-01"
+                  href="/customize/kursi-kayu-01"
                   className="px-7 py-4 rounded-xl bg-white border border-warm-border text-charcoal-800 font-semibold hover:border-charcoal-900 hover:bg-cream-200/50 transition-all flex items-center justify-center gap-2 text-base shadow-sm"
                 >
                   <SlidersHorizontal className="w-4 h-4 text-wood-medium" />
@@ -79,15 +79,16 @@ export default function HomePage() {
                 <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-wood-light via-wood-medium to-charcoal-900 opacity-20 blur-xl"></div>
                 <div className="relative">
                   <FurnitureCanvas
-                    modelType="dining-table"
+                    modelType="coffee-table"
                     modelUrl="/models/asset 3D/nakas.glb"
-                    length={160}
-                    width={80}
-                    height={76}
-                    defaultLength={160}
-                    defaultWidth={80}
-                    defaultHeight={76}
+                    length={40}
+                    width={35}
+                    height={45}
+                    defaultLength={40}
+                    defaultWidth={35}
+                    defaultHeight={45}
                     showDimensions={false}
+                    scale3D={0.65}
                   />
 
                   <div className="mt-3 flex items-center justify-between text-xs text-warm-gray px-2">
@@ -249,13 +250,13 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="text-charcoal-800 text-sm italic leading-relaxed">
-                &ldquo;Sangat puas! Fitur pratinjau 3D-nya luar biasa membantu untuk ukur sudut ruang tamu yang terbatas. Hasil meja makan kayunya presisi sekali dan finishing jati alaminya sangat halus.&rdquo;
+                &ldquo;Mantapp sesuai request pesanan saya, ukurannya juga pas di kamar saya, best lah.&rdquo;
               </p>
             </div>
             <div className="pt-4 border-t border-warm-border/50 flex items-center justify-between relative z-10">
               <div>
-                <h4 className="font-serif font-bold text-sm text-charcoal-900">Budi Santoso</h4>
-                <p className="text-[11px] text-warm-gray">Jakarta Selatan • Pemesan Meja Makan</p>
+                <h4 className="font-serif font-bold text-sm text-charcoal-900">Krisna</h4>
+                <p className="text-[11px] text-warm-gray">Gianyar • Pemesan Meja Rias</p>
               </div>
               <span className="px-2.5 py-1 bg-cream-200 text-wood-dark text-[10px] font-bold rounded-full border border-warm-border/40">
                 Terverifikasi

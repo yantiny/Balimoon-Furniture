@@ -22,6 +22,7 @@ interface FurnitureCanvasProps {
   cameraPosition?: [number, number, number];
   modelPosition?: [number, number, number];
   enableControls?: boolean;
+  scale3D?: number;
 }
 
 export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
@@ -37,7 +38,8 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
   hideUIControls = false,
   cameraPosition,
   modelPosition = [0, 0, 0],
-  enableControls = true
+  enableControls = true,
+  scale3D
 }) => {
 
   const [autoRotate, setAutoRotate] = useState(false);
@@ -50,7 +52,7 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
   const initialCamPos = cameraPosition || [2.0, 1.2, 2.2];
 
   return (
-    <div className={`relative w-full h-full bg-gradient-to-b from-cream-100 via-cream-200 to-cream-300/80 overflow-hidden group ${hideUIControls ? 'rounded-t-2xl' : 'h-[300px] xs:h-[360px] sm:h-[420px] md:h-[480px] lg:h-[520px] rounded-2xl shadow-inner border border-warm-border/60'
+    <div className={`relative w-full bg-gradient-to-b from-cream-100 via-cream-200 to-cream-300/80 overflow-hidden group ${hideUIControls ? 'rounded-t-2xl h-full' : 'aspect-square md:aspect-auto md:h-[480px] lg:h-[520px] rounded-2xl shadow-inner border border-warm-border/60'
       }`}>
       {/* Top Floating Control Bar (Only shown on full customizer view when controls enabled) */}
       {!hideUIControls && enableControls && (
@@ -113,6 +115,7 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
                 defaultWidth={defaultWidth}
                 defaultHeight={defaultHeight}
                 showDimensions={showDimensions}
+                scale3D={scale3D}
               />
 
             ) : (

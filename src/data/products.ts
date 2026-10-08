@@ -2,7 +2,7 @@ import { Product } from '../types/furniture';
 
 export const STATIC_PRODUCTS: Product[] = [
   {
-    id: "meja-rias-01",
+    id: "kursi-kayu-01",
     name: "Meja Rias Minimalis",
     tagline: "Meja rias kayu jati perhutani berdesain anggun dan fungsional.",
     category: "living",
@@ -126,10 +126,11 @@ export const STATIC_PRODUCTS: Product[] = [
       "/models/asset foto/nakas3.png"
     ],
     productionTime: "10 - 14 Hari",
-    length: { min: 35, max: 75, default: 45, step: 5 },
-    width: { min: 30, max: 65, default: 40, step: 5 },
-    height: { min: 35, max: 70, default: 50, step: 2 },
-    recommendedDimensions: { length: 45, width: 40, height: 50 }
+    scale3D: 0.65,
+    length: { min: 35, max: 70, default: 40, step: 5 },
+    width: { min: 30, max: 60, default: 35, step: 5 },
+    height: { min: 35, max: 65, default: 45, step: 5 },
+    recommendedDimensions: { length: 40, width: 35, height: 45 }
   },
   {
     id: "meja-tinggi-makan-06",
@@ -157,32 +158,32 @@ export const STATIC_PRODUCTS: Product[] = [
     height: { min: 70, max: 100, default: 76, step: 2 },
     recommendedDimensions: { length: 160, width: 80, height: 76 }
   },
-  // {
-  //   id: "rak-buku-pajangan-07",
-  //   name: "Rak Pajangan Kayu (Shelving Unit)",
-  //   tagline: "Rak penyimpanan & pajangan kayu bertingkat yang rapi.",
-  //   category: "storage",
-  //   basePrice: 2800000,
-  //   description: "Rak kayu bertingkat serbaguna untuk menata buku, tanaman hias, dan koleksi aksoris interior rumah.",
-  //   material: "Kayu Jati Perhutani",
-  //   materials: [
-  //     { id: "teak", name: "Kayu Jati Perhutani", description: "Rangka dan ambalan kayu jati perhutani oven berdaya tahan tinggi.", priceMultiplier: 1.0 }
-  //   ],
-  //   finishing: "Finishing Alami Kayu",
-  //   model3D: "/models/asset 3D/rak.glb",
-  //   modelType: "bookshelf",
-  //   image: "/models/asset foto/rakdapur1.png",
-  //   gallery: [
-  //     "/models/asset foto/rakdapur1.png",
-  //     "/models/asset foto/rakdapur2.png",
-  //     "/models/asset foto/rakdapur3.png"
-  //   ],
-  //   productionTime: "14 - 20 Hari",
-  //   length: { min: 60, max: 200, default: 100, step: 5 },
-  //   width: { min: 30, max: 60, default: 40, step: 2 },
-  //   height: { min: 100, max: 220, default: 160, step: 5 },
-  //   recommendedDimensions: { length: 100, width: 40, height: 160 }
-  // },
+  {
+    id: "meja-pendek-panjang-07",
+    name: "Meja Tamu",
+    tagline: "Meja tamu berkualitas tinggi untuk kenyamanan pengguna.",
+    category: "living",
+    basePrice: 2800000,
+    description: "Meja tamu kayu jati perhutani serbaguna untuk menata buku, tanaman hias, dan koleksi aksoris interior rumah.",
+    material: "Kayu Jati Perhutani",
+    materials: [
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Rangka dan ambalan kayu jati perhutani oven berdaya tahan tinggi.", priceMultiplier: 1.0 }
+    ],
+    finishing: "Finishing Alami Kayu",
+    model3D: "/models/asset 3D/rak.glb",
+    modelType: "bookshelf",
+    image: "/models/asset foto/rakdapur1.png",
+    gallery: [
+      "/models/asset foto/rakdapur1.png",
+      "/models/asset foto/rakdapur2.png",
+      "/models/asset foto/rakdapur3.png"
+    ],
+    productionTime: "14 - 20 Hari",
+    length: { min: 60, max: 200, default: 100, step: 5 },
+    width: { min: 30, max: 60, default: 40, step: 2 },
+    height: { min: 100, max: 220, default: 160, step: 5 },
+    recommendedDimensions: { length: 100, width: 40, height: 160 }
+  },
   // {
   //   id: "rak-modular-tingkat-08",
   //   name: "Rak Modular Tingkat (Open Bookshelf)",

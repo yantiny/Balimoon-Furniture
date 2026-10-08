@@ -13,6 +13,7 @@ interface GLBFurnitureModelProps {
   defaultWidth?: number;  // default product width in cm
   defaultHeight?: number; // default product height in cm
   showDimensions?: boolean;
+  scale3D?: number;
 }
 
 export const GLBFurnitureModel: React.FC<GLBFurnitureModelProps> = ({
@@ -23,7 +24,8 @@ export const GLBFurnitureModel: React.FC<GLBFurnitureModelProps> = ({
   defaultLength,
   defaultWidth,
   defaultHeight,
-  showDimensions = true
+  showDimensions = true,
+  scale3D = 1.0
 }) => {
   // Load GLB file using Drei useGLTF
   const { scene } = useGLTF(modelUrl);
@@ -49,7 +51,7 @@ export const GLBFurnitureModel: React.FC<GLBFurnitureModelProps> = ({
 
     // Optimal base framing scale so all GLB models fit nicely and balanced in the 3D viewport
     const maxDim = Math.max(size.x, size.y, size.z);
-    const baseScale = maxDim > 0 ? 1.35 / maxDim : 1;
+    const baseScale = (maxDim > 0 ? 1.35 / maxDim : 1) * scale3D;
 
     // Compare GLB aspect ratio with default dimensions ratio to detect if X axis represents Width or Length
     const ratioActual = size.z > 0 ? size.x / size.z : 1;

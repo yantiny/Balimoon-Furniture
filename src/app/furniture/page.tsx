@@ -16,22 +16,16 @@ export default function FurnitureCatalogPage() {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check if user is already verified in this session
-    const savedAuth = sessionStorage.getItem('balimoon_catalog_verified');
-    if (savedAuth === 'true') {
-      setIsVerified(true);
-      setShowModal(false);
-    } else {
-      setIsVerified(false);
-      setShowModal(true);
-    }
+    // Selalu reset verifikasi setiap kali halaman katalog dibuka/dikunjungi kembali
+    sessionStorage.removeItem('balimoon_catalog_verified');
+    setIsVerified(false);
+    setShowModal(true);
     setIsCheckingAuth(false);
   }, []);
 
   const handleVerified = () => {
     setIsVerified(true);
     setShowModal(false);
-    sessionStorage.setItem('balimoon_catalog_verified', 'true');
   };
 
   const handleResetVerification = () => {
