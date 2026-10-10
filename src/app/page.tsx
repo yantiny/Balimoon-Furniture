@@ -3,8 +3,13 @@ import Link from 'next/link';
 import ProductCard from '../components/ui/ProductCard';
 import { STATIC_PRODUCTS, getProductById } from '../data/products';
 import { Product } from '../types/furniture';
-import { FurnitureCanvas } from '../components/3d/FurnitureCanvas';
+import dynamic from 'next/dynamic';
 import { ChairLogo } from '../components/ui/ChairLogo';
+
+const FurnitureCanvas = dynamic(() => import('../components/3d/FurnitureCanvas'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-cream-200 animate-pulse flex items-center justify-center text-xs text-warm-gray">Memuat 3D...</div>
+});
 import { Ruler, ShieldCheck, Hammer, Move3d, ArrowRight, CheckCircle2, SlidersHorizontal, Star, Quote } from 'lucide-react';
 
 export default function HomePage() {

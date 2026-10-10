@@ -2,7 +2,7 @@ export interface ProductMaterial {
   id: string;
   name: string;
   description: string;
-  priceMultiplier: number; // e.g. 1.0 for Solid Teak, 1.15 for Solid Walnut
+  priceMultiplier: number;
   image?: string;
 }
 
@@ -20,19 +20,18 @@ export interface Product {
   category: 'dining' | 'living' | 'storage' | 'workspace';
   basePrice: number;
   description: string;
-  material: string; // Default or primary material display text
+  material: string;
   materials: ProductMaterial[];
-  finishing: string; // Locked to "Natural Wood Finish"
-  model3D: string; // GLB path or procedural model type
+  finishing: string;
+  model3D: string;
   modelType: 'table' | 'dining-table' | 'coffee-table' | 'cabinet' | 'bookshelf' | 'tv-console' | 'chair' | 'sofa' | 'bed';
-
   image: string;
   gallery: string[];
   productionTime: string;
-  scale3D?: number; // Optional visual 3D scale multiplier (e.g. 0.65 for compact items like Nakas)
-  length: DimensionRange; // in cm
-  width: DimensionRange; // in cm
-  height: DimensionRange; // in cm
+  scale3D?: number;
+  length: DimensionRange;
+  width: DimensionRange;
+  height: DimensionRange;
   recommendedDimensions: {
     length: number;
     width: number;
@@ -60,22 +59,21 @@ export type OrderStatus =
   | 'SUBMITTED'
   | 'DIPROSES'
   | 'PRODUKSI'
-  | 'DIPRODUKSI'
   | 'FINISHING'
   | 'SIAP DIKIRIM'
   | 'DIKIRIM'
   | 'SELESAI'
-  | 'DIBATALKAN'
+  | 'DIBATALKAN';
 
-  | 'DESIGN_CONFIRMATION'
-  | 'MATERIAL_PREPARATION'
-  | 'PRODUCTION'
-  | 'QUALITY_CHECK'
-  | 'READY_TO_SHIP'
-  | 'COMPLETED'
-  | 'CANCELLED'
-  | 'REVISION_REQUIRED';
-
+export interface StatusHistoryItem {
+  id?: string;
+  pesanan_id?: string;
+  status_lama?: OrderStatus | string | null;
+  status_baru: OrderStatus | string;
+  catatan?: string | null;
+  dibuat_oleh?: string;
+  created_at: string;
+}
 
 export interface OrderData {
   orderId: string;
@@ -93,11 +91,12 @@ export interface OrderData {
   material: string;
   finishing: string;
   additionalRequest: string;
-  referenceImage: string;
+  referenceImage?: string;
   estimatedPrice: number;
-  finalPrice?: number;
+  finalPrice?: number | null;
   status: OrderStatus;
   estimatedProductionTime: string;
+  statusHistory?: StatusHistoryItem[];
   timelineDates?: {
     submitted?: string;
     design?: string;
@@ -107,4 +106,11 @@ export interface OrderData {
     shipping?: string;
     completed?: string;
   };
+}
+
+export interface AdminStatsSummary {
+  totalOrders: number;
+  submittedOrders: number;
+  inProductionOrders: number;
+  completedOrders: number;
 }

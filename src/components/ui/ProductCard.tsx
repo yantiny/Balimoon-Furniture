@@ -2,8 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import { Product } from '../../types/furniture';
 import { formatIDR } from '../../utils/pricing';
-import { FurnitureCanvas } from '../3d/FurnitureCanvas';
+import dynamic from 'next/dynamic';
 import { SlidersHorizontal, Sparkles } from 'lucide-react';
+
+const FurnitureCanvas = dynamic(() => import('../3d/FurnitureCanvas'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-cream-200 animate-pulse flex items-center justify-center text-xs text-warm-gray">Memuat 3D...</div>
+});
 
 interface ProductCardProps {
   product: Product;

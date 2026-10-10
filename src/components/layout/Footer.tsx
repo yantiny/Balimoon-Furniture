@@ -88,16 +88,19 @@ export const Footer = () => {
               <li>
                 <Link href="/track" className="hover:text-white transition-colors">Cek Status Pesanan</Link>
               </li>
+              <li>
+                <Link href="/admin/login" className="hover:text-white text-wood-light font-medium transition-colors">Portal Admin</Link>
+              </li>
             </ul>
 
           </div>
 
           {/* Technical Note */}
           <div>
-            <h5 className="text-white font-semibold text-sm tracking-wide mb-4 uppercase text-xs">Sistem Otomatisasi</h5>
+            <h5 className="text-white font-semibold text-sm tracking-wide mb-4 uppercase text-xs">Arsitektur Database</h5>
             <div className="p-4 rounded-xl bg-charcoal-700/40 border border-charcoal-700 text-xs text-warm-gray space-y-2">
-              <p className="font-medium text-cream-200">✨ Arsitektur Zero Database</p>
-              <p>Ditenagai workflow n8n Webhook yang terhubung langsung ke basis data Google Sheets.</p>
+              <p className="font-medium text-cream-200">⚡ Supabase PostgreSQL</p>
+              <p>Ditenagai Supabase PostgreSQL dengan Row Level Security & Admin Control Panel.</p>
             </div>
           </div>
 

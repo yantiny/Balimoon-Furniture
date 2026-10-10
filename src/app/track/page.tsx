@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { trackOrderById } from '../../services/n8nService';
+import { getOrderByCode } from '../../services/orderService';
+import { getLocalOrders } from '../../services/localStorageService';
 import { OrderData } from '../../types/furniture';
 import OrderTimeline from '../../components/ui/OrderTimeline';
 import { formatIDR } from '../../utils/pricing';
@@ -30,15 +31,36 @@ function TrackOrderContent() {
     setOrderData(null);
 
     try {
-      const res = await trackOrderById(orderIdInput);
-      if (res.success && res.data) {
+      const response = await fetch(`/api/orders/track?code=${encodeURIComponent(orderIdInput.trim())}`);
+      const res = await response.json();
+      if (response.ok && res.success && res.data) {
         setOrderData(res.data);
       } else {
-        setErrorMsg(res.message || 'ID Pesanan tidak ditemukan.');
+        const localMatched = getLocalOrders().find(o => o.orderId.toUpperCase() === orderIdInput.trim().toUpperCase());
+        if (localMatched) {
+          setOrderData(localMatched);
+        } else {
+          const fallbackRes = await getOrderByCode(orderIdInput);
+          if (fallbackRes.success && fallbackRes.data) {
+            setOrderData(fallbackRes.data);
+          } else {
+            setErrorMsg(res.message || fallbackRes.message || 'ID Pesanan tidak ditemukan.');
+          }
+        }
       }
     } catch (err) {
       console.error(err);
-      setErrorMsg('Terjadi kesalahan saat melacak pesanan Anda.');
+      const localMatched = getLocalOrders().find(o => o.orderId.toUpperCase() === orderIdInput.trim().toUpperCase());
+      if (localMatched) {
+        setOrderData(localMatched);
+      } else {
+        const fallbackRes = await getOrderByCode(orderIdInput);
+        if (fallbackRes.success && fallbackRes.data) {
+          setOrderData(fallbackRes.data);
+        } else {
+          setErrorMsg('Terjadi kesalahan saat melacak pesanan Anda.');
+        }
+      }
     } finally {
       setLoading(false);
     }

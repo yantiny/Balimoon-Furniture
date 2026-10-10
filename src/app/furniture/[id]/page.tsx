@@ -6,8 +6,13 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { STATIC_PRODUCTS, getProductById } from '../../../data/products';
 import { formatIDR } from '../../../utils/pricing';
-import { FurnitureCanvas } from '../../../components/3d/FurnitureCanvas';
+import nextDynamic from 'next/dynamic';
 import { SlidersHorizontal, Clock, Ruler, Sparkles, ArrowLeft, Box } from 'lucide-react';
+
+const FurnitureCanvas = nextDynamic(() => import('../../../components/3d/FurnitureCanvas'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-cream-200 animate-pulse flex items-center justify-center text-xs text-warm-gray">Memuat 3D...</div>
+});
 
 export const dynamic = 'force-dynamic';
 

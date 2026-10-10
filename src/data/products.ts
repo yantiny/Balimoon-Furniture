@@ -22,7 +22,7 @@ export const STATIC_PRODUCTS: Product[] = [
       "/models/asset foto/mejarias3.png"
     ],
     productionTime: "10 - 14 Hari",
-    length: { min: 60, max: 150, default: 90, step: 5 },
+    length: { min: 50, max: 150, default: 90, step: 5 },
     width: { min: 35, max: 70, default: 45, step: 5 },
     height: { min: 110, max: 180, default: 140, step: 5 },
     recommendedDimensions: { length: 90, width: 45, height: 140 }

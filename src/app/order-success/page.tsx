@@ -4,7 +4,8 @@ import React, { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { OrderData } from '../../types/furniture';
-import { trackOrderById } from '../../services/n8nService';
+import { getOrderByCode } from '../../services/orderService';
+import { getLocalOrders } from '../../services/localStorageService';
 import { formatIDR } from '../../utils/pricing';
 import { CheckCircle2, Clock, Search, Box, ShieldCheck, Copy, Check, AlertCircle, Loader2, MessageSquareText } from 'lucide-react';
 import { generateWhatsAppPaymentUrl } from '../../utils/whatsapp';
@@ -34,18 +35,40 @@ function OrderSuccessContent() {
       setErrorMsg(null);
 
       try {
-        const res = await trackOrderById(orderId);
+        const response = await fetch(`/api/orders/track?code=${encodeURIComponent(orderId)}`);
+        const res = await response.json();
         if (isMounted) {
-          if (res.success && res.data) {
+          if (response.ok && res.success && res.data) {
             setOrder(res.data);
           } else {
-            setErrorMsg(res.message || `Pesanan dengan ID "${orderId}" tidak ditemukan.`);
+            // Client-side fallback check
+            const localMatched = getLocalOrders().find(o => o.orderId.toUpperCase() === orderId.trim().toUpperCase());
+            if (localMatched) {
+              setOrder(localMatched);
+            } else {
+              const fallbackRes = await getOrderByCode(orderId);
+              if (fallbackRes.success && fallbackRes.data) {
+                setOrder(fallbackRes.data);
+              } else {
+                setErrorMsg(res.message || fallbackRes.message || `Pesanan dengan ID "${orderId}" tidak ditemukan.`);
+              }
+            }
           }
         }
       } catch (err) {
         console.error('Fetch order error:', err);
         if (isMounted) {
-          setErrorMsg('Terjadi kesalahan saat mengambil rincian pesanan dari n8n.');
+          const localMatched = getLocalOrders().find(o => o.orderId.toUpperCase() === orderId.trim().toUpperCase());
+          if (localMatched) {
+            setOrder(localMatched);
+          } else {
+            const fallbackRes = await getOrderByCode(orderId);
+            if (fallbackRes.success && fallbackRes.data) {
+              setOrder(fallbackRes.data);
+            } else {
+              setErrorMsg('Terjadi kesalahan saat mengambil rincian pesanan.');
+            }
+          }
         }
       } finally {
         if (isMounted) {
@@ -97,7 +120,7 @@ function OrderSuccessContent() {
         <div className="bg-white p-12 rounded-3xl border border-warm-border/80 shadow-soft text-center space-y-3 animate-pulse">
           <Loader2 className="w-8 h-8 text-wood-medium animate-spin mx-auto" />
           <p className="text-sm font-semibold text-charcoal-800">
-            Mengambil data pesanan langsung dari server n8n...
+            Mengambil data pesanan langsung dari database...
           </p>
           <span className="text-xs text-warm-gray font-mono">{orderId}</span>
         </div>

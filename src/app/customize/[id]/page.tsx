@@ -5,9 +5,14 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { STATIC_PRODUCTS, getProductById } from '../../../data/products';
 import { calculateEstimatedPrice } from '../../../utils/pricing';
-import { submitOrderRequest } from '../../../services/n8nService';
-import { FurnitureCanvas } from '../../../components/3d/FurnitureCanvas';
+import dynamic from 'next/dynamic';
 import { PriceEstimateWidget } from '../../../components/ui/PriceEstimateWidget';
+
+const FurnitureCanvas = dynamic(() => import('../../../components/3d/FurnitureCanvas'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-cream-200 animate-pulse flex items-center justify-center text-xs text-warm-gray">Memuat 3D...</div>
+});
+import { saveLocalOrder } from '../../../services/localStorageService';
 import { CustomizationState } from '../../../types/furniture';
 import {
   SlidersHorizontal,
@@ -111,15 +116,23 @@ export default function CustomizerPage() {
         address
       };
 
-      const result = await submitOrderRequest(customizationData);
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(customizationData),
+      });
 
+      const result = await res.json();
 
-      if (result.success) {
+      if (res.ok && result.success) {
+        if (result.data) {
+          saveLocalOrder(result.data);
+        }
         const finalId = result.data?.orderId || result.data?.["Id-Pemesanan"] || '';
         if (finalId) {
           router.push(`/order-success?orderId=${encodeURIComponent(finalId)}`);
         } else {
-          setFormError('Pesanan berhasil dikirim tetapi ID Pesanan tidak diterima dari server n8n.');
+          setFormError('Pesanan berhasil dikirim tetapi ID Pesanan tidak diterima.');
         }
       } else {
         setFormError(result.message || 'Gagal mengirim pesanan. Silakan coba lagi.');
