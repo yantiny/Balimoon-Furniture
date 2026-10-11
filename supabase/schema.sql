@@ -206,10 +206,22 @@ CREATE POLICY "Admin mengelola testimoni" ON public.testimoni FOR ALL TO authent
 -- Realtime publication for testimoni table
 ALTER PUBLICATION supabase_realtime ADD TABLE public.testimoni;
 
--- Seed Data Testimoni Awal
-INSERT INTO public.testimoni (nama, kota, produk_nama, rating, komentar, terverifikasi) VALUES
-('Krisna', 'Gianyar, Bali', 'Meja Rias Minimalis', 5, 'Mantapp sesuai request pesanan saya, ukurannya juga pas di kamar saya, best lah.', true),
-('Ni Made Swasti', 'Denpasar, Bali', 'Lemari Sleding 2 Pintu', 5, 'Kayu Jati Perhutani nya benar-benar kokoh dan tebal. Lemari sleding custom yang saya pesan pas sekali di kamar tidur. Komunikasi & tracking pesanan online-nya sangat transparan.', true),
-('Hendrik Wijaya', 'Surabaya, Jawa Timur', 'Meja Nakas Minimalis', 5, 'Meja nakas minimalisnya cantik banget di samping tempat tidur. Dikerjakan rapi, pengiriman aman sampai Surabaya. Sangat recommended buat yang butuh mebel custom presisi!', true)
-ON CONFLICT DO NOTHING;
+-- 10. VIEW GABUNGAN PESANAN LENGKAP (Memudahkan Admin Membaca Data di Supabase)
+CREATE OR REPLACE VIEW public.daftar_pesanan_lengkap AS
+SELECT 
+  p.kode_pesanan,
+  c.nama AS nama_pelanggan,
+  c.no_whatsapp,
+  pr.nama AS nama_produk,
+  CONCAT(p.panjang, ' x ', p.lebar, ' x ', p.tinggi, ' cm') AS ukuran,
+  p.estimasi_harga,
+  COALESCE(p.harga_final, p.estimasi_harga) AS harga_final,
+  p.status,
+  p.catatan,
+  p.created_at AS tanggal_pesan
+FROM public.pesanan p
+LEFT JOIN public.pelanggan c ON p.pelanggan_id = c.id
+LEFT JOIN public.produk pr ON p.produk_id = pr.id
+ORDER BY p.created_at DESC;
+
 
