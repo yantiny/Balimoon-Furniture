@@ -1,38 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ProductCard from '../../components/ui/ProductCard';
-import RobotVerificationModal from '../../components/ui/RobotVerificationModal';
 import { STATIC_PRODUCTS } from '../../data/products';
-import { Search, Filter, SlidersHorizontal, Box, ShieldCheck, Lock, RotateCcw } from 'lucide-react';
+import { Search, Filter, SlidersHorizontal, Box } from 'lucide-react';
 
 export default function FurnitureCatalogPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-
-  // Verification states
-  const [isVerified, setIsVerified] = useState<boolean>(false);
-  const [isCheckingAuth, setIsCheckingAuth] = useState<boolean>(true);
-  const [showModal, setShowModal] = useState<boolean>(false);
-
-  useEffect(() => {
-    // Selalu reset verifikasi setiap kali halaman katalog dibuka/dikunjungi kembali
-    sessionStorage.removeItem('balimoon_catalog_verified');
-    setIsVerified(false);
-    setShowModal(true);
-    setIsCheckingAuth(false);
-  }, []);
-
-  const handleVerified = () => {
-    setIsVerified(true);
-    setShowModal(false);
-  };
-
-  const handleResetVerification = () => {
-    sessionStorage.removeItem('balimoon_catalog_verified');
-    setIsVerified(false);
-    setShowModal(true);
-  };
 
   const categories = [
     { id: 'all', label: 'Semua Koleksi' },
@@ -51,18 +26,8 @@ export default function FurnitureCatalogPage() {
   return (
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 min-h-[80vh]">
 
-      {/* Robot Verification Gate Modal */}
-      {!isCheckingAuth && (
-        <RobotVerificationModal
-          isOpen={showModal || !isVerified}
-          onVerified={handleVerified}
-          title="Verifikasi Akses Katalog Custom"
-          description="Selesaikan verifikasi 'Saya bukan robot' di bawah ini untuk melihat koleksi mebel kayu custom Bali Moon Furniture."
-        />
-      )}
-
-      {/* Main Catalog Content Container with Blur when locked */}
-      <div className={`transition-all duration-500 space-y-10 ${!isVerified ? 'filter blur-md select-none pointer-events-none opacity-40' : 'opacity-100'}`}>
+      {/* Main Catalog Content Container */}
+      <div className="space-y-10">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -78,25 +43,6 @@ export default function FurnitureCatalogPage() {
               Jelajahi berbagai model mebel kayu yang dapat disesuaikan. Klik pada produk untuk mengatur panjang, lebar, dan tinggi dalam tampilan 3D interaktif.
             </p>
           </div>
-
-          {/* Verification Status Banner & Testing Reset Button */}
-          {isVerified && (
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-2 bg-cream-200/80 border border-wood-light/50 rounded-xl text-xs text-wood-dark shadow-sm shrink-0">
-              <ShieldCheck className="w-4 h-4 text-wood-medium shrink-0" />
-              <div className="flex flex-col">
-                <span className="font-semibold text-charcoal-900">Terverifikasi (Bukan Robot)</span>
-                <span className="text-[10px] text-wood font-medium">Akses Katalog Terbuka</span>
-              </div>
-              <button
-                onClick={handleResetVerification}
-                className="ml-2 p-1.5 hover:bg-wood/10 rounded-lg text-wood-dark transition-colors flex items-center gap-1 text-[11px] font-medium"
-                title="Uji ulang verifikasi robot"
-              >
-                <RotateCcw className="w-3.5 h-3.5 text-wood-medium" />
-                <span className="hidden sm:inline">Uji Ulang</span>
-              </button>
-            </div>
-          )}
         </div>
 
         {/* Filter & Search Toolbar */}

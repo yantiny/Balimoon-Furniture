@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Compass, Box, SlidersHorizontal, Search } from 'lucide-react';
+import { Menu, X, Compass, Box, SlidersHorizontal, Search, MessageSquareHeart } from 'lucide-react';
 import { ChairLogo } from '../ui/ChairLogo';
 
 export const Navbar = () => {
@@ -14,6 +14,7 @@ export const Navbar = () => {
     { href: '/', label: 'Beranda', icon: Compass },
     { href: '/furniture', label: 'Katalog Mebel', icon: Box },
     { href: '/customize/kursi-kayu-01', label: 'Kustomisasi 3D', icon: SlidersHorizontal },
+    { href: '/testimoni', label: 'Testimoni', icon: MessageSquareHeart },
     { href: '/track', label: 'Cek Pesanan', icon: Search },
   ];
 

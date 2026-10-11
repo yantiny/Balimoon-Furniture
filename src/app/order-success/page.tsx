@@ -161,23 +161,23 @@ function OrderSuccessContent() {
               onClick={copyOrderId}
               className="px-3.5 py-2 rounded-xl bg-white border border-warm-border text-xs font-semibold text-charcoal-800 hover:border-wood transition-colors flex items-center gap-1.5 shadow-sm"
             >
-              {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4 text-wood-medium" />}
+              {copied ? <Check className="w-4 h-4 text-wood-medium" /> : <Copy className="w-4 h-4 text-wood-medium" />}
               <span>{copied ? 'Tersalin!' : 'Salin ID'}</span>
             </button>
           </div>
 
           {/* WhatsApp Payment Callout Card */}
-          <div className="p-5 bg-gradient-to-r from-emerald-900 to-green-800 text-white rounded-2xl shadow-md space-y-3">
+          <div className="p-5 bg-gradient-to-r from-wood-deep via-wood-dark to-wood text-white rounded-2xl shadow-md space-y-3 border border-wood-light/30">
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
-                <span className="text-[10px] uppercase font-extrabold tracking-widest text-emerald-300">LANGKAH SELANJUTNYA</span>
+                <span className="text-[10px] uppercase font-extrabold tracking-widest text-wood-light">LANGKAH SELANJUTNYA</span>
                 <h3 className="text-lg font-serif font-bold text-white">Pembayaran & Konfirmasi via WhatsApp</h3>
-                <p className="text-xs text-emerald-100 leading-relaxed">
+                <p className="text-xs text-cream-200 leading-relaxed">
                   Silakan hubungi WhatsApp Admin untuk menerima nomor rekening transfer (BCA/Mandiri/QRIS) dan konfirmasi DP produksi.
                 </p>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-emerald-700/60 flex items-center justify-center shrink-0 border border-emerald-500/40">
-                <MessageSquareText className="w-5 h-5 text-emerald-200" />
+              <div className="w-10 h-10 rounded-xl bg-wood/40 flex items-center justify-center shrink-0 border border-wood-light/40">
+                <MessageSquareText className="w-5 h-5 text-wood-light" />
               </div>
             </div>
 
@@ -185,9 +185,9 @@ function OrderSuccessContent() {
               href={waPaymentUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-charcoal-900 font-extrabold text-sm transition-all shadow-lg flex items-center justify-center gap-2 group"
+              className="w-full py-3.5 px-5 rounded-xl bg-wood-light hover:bg-wood text-charcoal-900 hover:text-white font-extrabold text-sm transition-all shadow-lg flex items-center justify-center gap-2 group border border-wood-light/50"
             >
-              <MessageSquareText className="w-5 h-5 text-charcoal-900 fill-current" />
+              <MessageSquareText className="w-5 h-5 fill-current" />
               <span>KONFIRMASI & BAYAR VIA WHATSAPP</span>
             </a>
           </div>

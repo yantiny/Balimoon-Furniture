@@ -87,7 +87,7 @@ function TrackOrderContent() {
           Cek Status Pesanan Custom
         </h1>
         <p className="text-warm-gray text-sm leading-relaxed">
-          Masukkan ID Pesanan Anda (contoh: <code className="font-mono bg-cream-200 px-1.5 py-0.5 rounded text-charcoal-900">CF-20260906-281</code>) untuk melihat progres pengerjaan mebel Anda.
+          Masukkan ID Pesanan Anda (contoh: <code className="font-mono bg-cream-200 px-1.5 py-0.5 rounded text-charcoal-900">BMF-20260811-5F49</code>) untuk melihat progres pengerjaan mebel Anda.
         </p>
       </div>
 
@@ -100,7 +100,7 @@ function TrackOrderContent() {
               type="text"
               value={orderIdInput}
               onChange={(e) => setOrderIdInput(e.target.value)}
-              placeholder="Masukkan ID Pesanan (contoh: CF-20260906-281)"
+              placeholder="BMF-20260811-5F49"
               className="w-full pl-11 pr-4 py-3 rounded-xl bg-cream-50 border border-warm-border/60 text-sm font-mono uppercase font-bold text-charcoal-900 placeholder:normal-case placeholder:font-sans placeholder:text-warm-gray focus:outline-none focus:ring-2 focus:ring-wood-medium"
             />
           </div>
@@ -156,8 +156,8 @@ function TrackOrderContent() {
                 {orderData.material && orderData.material !== '-' ? orderData.material : 'Kayu Jati Perhutani'}
               </span>
               {orderData.finalPrice ? (
-                <div className="px-3.5 py-1.5 bg-emerald-700 text-white rounded-lg shadow-sm font-serif font-bold text-xs flex items-center gap-1.5">
-                  <span className="text-[10px] uppercase font-sans tracking-wider bg-emerald-900/60 px-1.5 py-0.5 rounded">HARGA FIX</span>
+                <div className="px-3.5 py-1.5 bg-wood-dark text-white rounded-lg shadow-sm font-serif font-bold text-xs flex items-center gap-1.5">
+                  <span className="text-[10px] uppercase font-sans tracking-wider bg-wood-deep/80 px-1.5 py-0.5 rounded text-wood-light">HARGA FIX</span>
                   <span>{formatIDR(orderData.finalPrice)}</span>
                 </div>
               ) : (
@@ -215,7 +215,7 @@ function TrackOrderContent() {
                 <span className="font-serif font-bold text-charcoal-900 text-sm mt-0.5 block">{formatIDR(orderData.estimatedPrice)}</span>
               </div>
 
-              <div className={`p-3.5 rounded-xl border ${orderData.finalPrice ? 'bg-emerald-50 border-emerald-300 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900'}`}>
+              <div className={`p-3.5 rounded-xl border ${orderData.finalPrice ? 'bg-wood/10 border-wood/30 text-wood-dark' : 'bg-amber-50 border-amber-200 text-amber-900'}`}>
                 <span className="block text-[11px] font-semibold">{orderData.finalPrice ? 'Harga Fix / Final Admin' : 'Status Harga Fix'}</span>
                 <span className="font-serif font-bold text-sm mt-0.5 block">
                   {orderData.finalPrice ? formatIDR(orderData.finalPrice) : 'Menunggu Peninjauan Admin'}
@@ -253,14 +253,14 @@ function TrackOrderContent() {
           </div>
 
           {/* WhatsApp Payment / Help Banner */}
-          <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="p-4 bg-cream-100 rounded-2xl border border-warm-border flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-wood text-white flex items-center justify-center shrink-0 shadow-sm">
                 <MessageSquareText className="w-5 h-5 fill-current" />
               </div>
               <div className="text-xs">
-                <span className="font-bold text-emerald-900 block text-sm">Ada Pertanyaan atau Konfirmasi Pembayaran?</span>
-                <span className="text-emerald-700">Hubungi langsung WhatsApp Admin Bali Moon Furniture.</span>
+                <span className="font-bold text-charcoal-900 block text-sm">Ada Pertanyaan atau Konfirmasi Pembayaran?</span>
+                <span className="text-wood-dark">Hubungi langsung WhatsApp Admin Bali Moon Furniture.</span>
               </div>
             </div>
 
@@ -268,7 +268,7 @@ function TrackOrderContent() {
               href={generateWhatsAppPaymentUrl(orderData)}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 shrink-0"
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-wood hover:bg-wood-medium text-white font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 shrink-0"
             >
               <MessageSquareText className="w-4 h-4 fill-current" />
               <span>CHAT WA ADMIN</span>

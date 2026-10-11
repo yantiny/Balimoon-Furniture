@@ -176,3 +176,40 @@ ON CONFLICT (id) DO UPDATE SET
   gambar_url = EXCLUDED.gambar_url,
   model_3d_url = EXCLUDED.model_3d_url,
   aktif = EXCLUDED.aktif;
+
+-- ================================================================
+-- 9. TABEL TESTIMONI & ULASAN PELANGGAN (REAL-TIME)
+-- ================================================================
+CREATE TABLE IF NOT EXISTS public.testimoni (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  nama TEXT NOT NULL,
+  kota TEXT NOT NULL DEFAULT 'Indonesia',
+  produk_nama TEXT NOT NULL DEFAULT 'Mebel Custom',
+  rating INTEGER NOT NULL DEFAULT 5 CHECK (rating >= 1 AND rating <= 5),
+  komentar TEXT NOT NULL,
+  foto_url TEXT,
+  terverifikasi BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE public.testimoni ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Publik melihat testimoni" ON public.testimoni;
+CREATE POLICY "Publik melihat testimoni" ON public.testimoni FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Publik membuat testimoni" ON public.testimoni;
+CREATE POLICY "Publik membuat testimoni" ON public.testimoni FOR INSERT WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Admin mengelola testimoni" ON public.testimoni;
+CREATE POLICY "Admin mengelola testimoni" ON public.testimoni FOR ALL TO authenticated USING (public.is_admin()) WITH CHECK (public.is_admin());
+
+-- Realtime publication for testimoni table
+ALTER PUBLICATION supabase_realtime ADD TABLE public.testimoni;
+
+-- Seed Data Testimoni Awal
+INSERT INTO public.testimoni (nama, kota, produk_nama, rating, komentar, terverifikasi) VALUES
+('Krisna', 'Gianyar, Bali', 'Meja Rias Minimalis', 5, 'Mantapp sesuai request pesanan saya, ukurannya juga pas di kamar saya, best lah.', true),
+('Ni Made Swasti', 'Denpasar, Bali', 'Lemari Sleding 2 Pintu', 5, 'Kayu Jati Perhutani nya benar-benar kokoh dan tebal. Lemari sleding custom yang saya pesan pas sekali di kamar tidur. Komunikasi & tracking pesanan online-nya sangat transparan.', true),
+('Hendrik Wijaya', 'Surabaya, Jawa Timur', 'Meja Nakas Minimalis', 5, 'Meja nakas minimalisnya cantik banget di samping tempat tidur. Dikerjakan rapi, pengiriman aman sampai Surabaya. Sangat recommended buat yang butuh mebel custom presisi!', true)
+ON CONFLICT DO NOTHING;
+

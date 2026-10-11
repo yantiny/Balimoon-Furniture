@@ -4,7 +4,6 @@ import { ShieldCheck, Ruler, Box, Sparkles, MessageCircle } from 'lucide-react';
 import { generateWhatsAppChatUrl } from '../../utils/whatsapp';
 import { ChairLogo } from '../ui/ChairLogo';
 
-
 export const Footer = () => {
   return (
     <footer className="bg-charcoal-900 text-cream-200 border-t border-charcoal-700 pt-16 pb-12">
@@ -54,26 +53,26 @@ export const Footer = () => {
         </div>
 
         {/* Main Footer Links */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 py-12">
 
           {/* Brand Info */}
-          <div className="space-y-4">
+          <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-wood text-white flex items-center justify-center p-1.5">
-                <ChairLogo className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-xl bg-wood text-white flex items-center justify-center p-1.5 shadow-sm">
+                <ChairLogo className="w-7 h-7 text-white" />
               </div>
               <span className="font-poppins text-xl font-bold tracking-tight text-white">
-                BALIMOON FURNITURE
+                BALI MOON FURNITURE
               </span>
             </div>
-            <p className="text-sm text-warm-gray leading-relaxed">
+            <p className="text-sm text-warm-gray leading-relaxed max-w-sm">
               Mebel custom berkualitas tinggi yang dibuat khusus sesuai keinginan Anda. Memadukan keahlian seni kayu tradisional Indonesia dengan teknologi visualisasi 3D modern.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h5 className="text-white font-semibold text-sm tracking-wide mb-4 uppercase text-xs">Jelajahi</h5>
+          <div className="md:col-span-3">
+            <h5 className="text-white font-semibold text-xs tracking-wider mb-4 uppercase">Jelajahi</h5>
             <ul className="space-y-2.5 text-sm text-warm-gray">
               <li>
                 <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
@@ -83,50 +82,38 @@ export const Footer = () => {
               </li>
               <li>
                 <Link href="/customize/kursi-kayu-01" className="hover:text-white transition-colors">Kustomisasi 3D</Link>
-
+              </li>
+              <li>
+                <Link href="/testimoni" className="hover:text-white transition-colors">Testimoni Pelanggan</Link>
               </li>
               <li>
                 <Link href="/track" className="hover:text-white transition-colors">Cek Status Pesanan</Link>
               </li>
-              <li>
-                <Link href="/admin/login" className="hover:text-white text-wood-light font-medium transition-colors">Portal Admin</Link>
-              </li>
             </ul>
-
-          </div>
-
-          {/* Technical Note */}
-          <div>
-            <h5 className="text-white font-semibold text-sm tracking-wide mb-4 uppercase text-xs">Arsitektur Database</h5>
-            <div className="p-4 rounded-xl bg-charcoal-700/40 border border-charcoal-700 text-xs text-warm-gray space-y-2">
-              <p className="font-medium text-cream-200">⚡ Supabase PostgreSQL</p>
-              <p>Ditenagai Supabase PostgreSQL dengan Row Level Security & Admin Control Panel.</p>
-            </div>
           </div>
 
           {/* Contact / Service */}
-          <div>
-            <h5 className="text-white font-semibold text-sm tracking-wide mb-4 uppercase text-xs">Layanan Pelanggan</h5>
-            <p className="text-sm text-warm-gray leading-relaxed mb-3">
+          <div className="md:col-span-4">
+            <h5 className="text-white font-semibold text-xs tracking-wider mb-4 uppercase">Layanan Pelanggan</h5>
+            <p className="text-sm text-warm-gray leading-relaxed mb-4">
               Butuh panduan kustomisasi atau pertanyaan seputar kayu & pengiriman? Hubungi Admin kami.
             </p>
             <a
               href={generateWhatsAppChatUrl('Halo Admin Bali Moon Furniture, saya ingin bertanya tentang custom furniture.')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 bg-wood/20 hover:bg-wood/35 text-wood-light hover:text-white text-xs font-medium rounded-xl border border-wood-light/40 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-wood hover:bg-wood-dark text-white text-xs font-semibold rounded-xl border border-wood-light/40 transition-colors shadow-sm"
             >
-              <MessageCircle className="w-4 h-4 text-wood-light" />
-              <span>Chat WA Admin</span>
+              <MessageCircle className="w-4 h-4 text-white" />
+              <span>Chat WhatsApp Admin</span>
             </a>
           </div>
-
 
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-charcoal-700 flex items-center justify-center text-xs text-warm-gray text-center">
-          <p>© {new Date().getFullYear()} BALIMOON FURNITURE. Hak Cipta Dilindungi.</p>
+          <p>© {new Date().getFullYear()} BALI MOON FURNITURE. Hak Cipta Dilindungi.</p>
         </div>
 
       </div>

@@ -10,6 +10,7 @@ const FurnitureCanvas = dynamic(() => import('../components/3d/FurnitureCanvas')
   ssr: false,
   loading: () => <div className="w-full h-full bg-cream-200 animate-pulse flex items-center justify-center text-xs text-warm-gray">Memuat 3D...</div>
 });
+import TestimonialSection from '../components/testimonials/TestimonialSection';
 import { Ruler, ShieldCheck, Hammer, Move3d, ArrowRight, CheckCircle2, SlidersHorizontal, Star, Quote } from 'lucide-react';
 
 export default function HomePage() {
@@ -228,97 +229,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. TESTIMONIALS SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-cream-200 text-wood-dark text-xs font-semibold rounded-full border border-warm-border">
-            <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-            <span>Ulasan & Testimoni Pelanggan</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal-900">
-            Pengalaman Mereka Bersama Bali Moon Furniture
-          </h2>
-          <p className="text-warm-gray text-sm">
-            Kepuasan pelanggan yang telah memesan mebel kayu custom dengan ukuran presisi dan kualitas tinggi.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-          {/* Testimonial Card 1 */}
-          <div className="bg-white p-7 rounded-3xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-6 relative overflow-hidden">
-            <Quote className="w-10 h-10 text-wood/10 absolute top-4 right-4 pointer-events-none" />
-            <div className="space-y-4 relative z-10">
-              <div className="flex items-center gap-1 text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
-                ))}
-              </div>
-              <p className="text-charcoal-800 text-sm italic leading-relaxed">
-                &ldquo;Mantapp sesuai request pesanan saya, ukurannya juga pas di kamar saya, best lah.&rdquo;
-              </p>
-            </div>
-            <div className="pt-4 border-t border-warm-border/50 flex items-center justify-between relative z-10">
-              <div>
-                <h4 className="font-serif font-bold text-sm text-charcoal-900">Krisna</h4>
-                <p className="text-[11px] text-warm-gray">Gianyar • Pemesan Meja Rias</p>
-              </div>
-              <span className="px-2.5 py-1 bg-cream-200 text-wood-dark text-[10px] font-bold rounded-full border border-warm-border/40">
-                Terverifikasi
-              </span>
-            </div>
-          </div>
-
-          {/* Testimonial Card 2 */}
-          <div className="bg-white p-7 rounded-3xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-6 relative overflow-hidden">
-            <Quote className="w-10 h-10 text-wood/10 absolute top-4 right-4 pointer-events-none" />
-            <div className="space-y-4 relative z-10">
-              <div className="flex items-center gap-1 text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
-                ))}
-              </div>
-              <p className="text-charcoal-800 text-sm italic leading-relaxed">
-                &ldquo;Kayu Jati Perhutani nya benar-benar kokoh dan tebal. Lemari sleding custom yang saya pesan pas sekali di kamar tidur. Komunikasi & tracking pesanan online-nya sangat transparan.&rdquo;
-              </p>
-            </div>
-            <div className="pt-4 border-t border-warm-border/50 flex items-center justify-between relative z-10">
-              <div>
-                <h4 className="font-serif font-bold text-sm text-charcoal-900">Ni Made Swasti</h4>
-                <p className="text-[11px] text-warm-gray">Denpasar, Bali • Pemesan Lemari Custom</p>
-              </div>
-              <span className="px-2.5 py-1 bg-cream-200 text-wood-dark text-[10px] font-bold rounded-full border border-warm-border/40">
-                Terverifikasi
-              </span>
-            </div>
-          </div>
-
-          {/* Testimonial Card 3 */}
-          <div className="bg-white p-7 rounded-3xl border border-warm-border/80 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-6 relative overflow-hidden">
-            <Quote className="w-10 h-10 text-wood/10 absolute top-4 right-4 pointer-events-none" />
-            <div className="space-y-4 relative z-10">
-              <div className="flex items-center gap-1 text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
-                ))}
-              </div>
-              <p className="text-charcoal-800 text-sm italic leading-relaxed">
-                &ldquo;Meja nakas minimalisnya cantik banget di samping tempat tidur. Dikerjakan rapi, pengiriman aman sampai Surabaya. Sangat recommended buat yang butuh mebel custom presisi!&rdquo;
-              </p>
-            </div>
-            <div className="pt-4 border-t border-warm-border/50 flex items-center justify-between relative z-10">
-              <div>
-                <h4 className="font-serif font-bold text-sm text-charcoal-900">Hendrik Wijaya</h4>
-                <p className="text-[11px] text-warm-gray">Surabaya • Pemesan Meja Nakas</p>
-              </div>
-              <span className="px-2.5 py-1 bg-cream-200 text-wood-dark text-[10px] font-bold rounded-full border border-warm-border/40">
-                Terverifikasi
-              </span>
-            </div>
-          </div>
-
-        </div>
-      </section>
+      {/* 5. TESTIMONIALS SECTION (REAL-TIME) */}
+      <TestimonialSection />
 
       {/* 6. BOTTOM CTA SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

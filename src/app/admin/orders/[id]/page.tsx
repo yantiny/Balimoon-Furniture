@@ -258,7 +258,7 @@ export default function AdminOrderDetailPage() {
                 href={getWhatsAppContactUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs transition-all shadow-md flex items-center justify-center gap-2 group shrink-0"
+                className="px-5 py-3.5 rounded-2xl bg-wood hover:bg-wood-medium text-white font-extrabold text-xs transition-all shadow-md flex items-center justify-center gap-2 group shrink-0"
               >
                 <MessageSquareText className="w-4 h-4 fill-current text-white" />
                 <span>HUBUNGI VIA WHATSAPP</span>
@@ -267,8 +267,8 @@ export default function AdminOrderDetailPage() {
 
             {/* Notifications */}
             {successMsg && (
-              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 font-semibold flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+              <div className="p-4 rounded-2xl bg-cream-200/80 border border-wood/30 text-xs text-wood-dark font-semibold flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-wood shrink-0" />
                 <span>{successMsg}</span>
               </div>
             )}
@@ -301,7 +301,7 @@ export default function AdminOrderDetailPage() {
 
                     <div className="p-3 bg-cream-50 rounded-xl border border-warm-border/60 flex items-center justify-between">
                       <span className="text-warm-gray font-medium flex items-center gap-1.5">
-                        <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                        <Phone className="w-3.5 h-3.5 text-wood-medium" />
                         <span>WhatsApp</span>
                       </span>
                       <span className="font-mono font-bold text-charcoal-900">{order.whatsapp}</span>
@@ -432,7 +432,7 @@ export default function AdminOrderDetailPage() {
 
                     <div className="flex items-center justify-between pt-2 border-t border-warm-border/60">
                       <span className="text-wood-dark font-bold">Harga Final Saat Ini:</span>
-                      <span className="font-serif font-extrabold text-emerald-800 text-base">
+                      <span className="font-serif font-extrabold text-wood-dark text-base">
                         {order.finalPrice ? formatIDR(order.finalPrice) : 'Belum Ditetapkan'}
                       </span>
                     </div>
@@ -441,7 +441,7 @@ export default function AdminOrderDetailPage() {
                   {/* 2. Final Price Input */}
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-charcoal-900 flex items-center gap-1.5">
-                      <DollarSign className="w-4 h-4 text-emerald-600" />
+                      <DollarSign className="w-4 h-4 text-wood-medium" />
                       <span>Input / Perbarui Harga Final (Rp)</span>
                     </label>
                     <div className="relative">
