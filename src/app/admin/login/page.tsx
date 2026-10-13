@@ -50,7 +50,7 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen bg-cream-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="w-full max-w-md bg-white rounded-3xl border border-warm-border/80 p-8 shadow-elevated space-y-8 animate-in fade-in zoom-in-95 duration-300">
-        
+
         {/* Brand Header */}
         <div className="text-center space-y-3">
           <div className="w-16 h-16 rounded-2xl bg-wood text-white mx-auto flex items-center justify-center shadow-md p-2">
@@ -138,9 +138,9 @@ export default function AdminLoginPage() {
           </button>
         </form>
 
-        <div className="text-center text-[11px] text-warm-gray border-t border-warm-border/60 pt-4">
+        {/* <div className="text-center text-[11px] text-warm-gray border-t border-warm-border/60 pt-4">
           Default Dev Credentials: <code className="bg-cream-200 px-1.5 py-0.5 rounded text-charcoal-900 font-mono">admin@balimoon.com</code> / <code className="bg-cream-200 px-1.5 py-0.5 rounded text-charcoal-900 font-mono">balimoon2026</code>
-        </div>
+        </div> */}
 
       </div>
     </div>
