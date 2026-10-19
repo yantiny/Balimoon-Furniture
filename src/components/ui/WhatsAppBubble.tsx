@@ -129,7 +129,7 @@ export const WhatsAppBubble: React.FC = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ketik pesan Anda..."
-                  className="flex-1 bg-charcoal-950 border border-charcoal-700 rounded-xl px-3 py-2 text-xs text-white placeholder-warm-gray/50 focus:outline-none focus:border-wood transition-colors"
+                  className="flex-1 bg-charcoal-950 border border-charcoal-700 rounded-xl px-3 py-2 text-xs text-wood placeholder-warm-gray/50 focus:outline-none focus:border-wood transition-colors"
                 />
                 <button
                   onClick={() => handleSend()}
