@@ -163,7 +163,7 @@ CREATE POLICY "Admin menambah riwayat status" ON public.riwayat_status FOR INSER
 INSERT INTO public.produk (id, nama, deskripsi, harga_dasar, gambar_url, model_3d_url, aktif)
 VALUES
 ('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Meja Rias Minimalis', 'Meja rias kayu jati perhutani pilihan dengan cermin dan laci penyimpanan yang rapi.', 1800000, '/models/asset foto/mejarias1.png', '/models/asset 3D/mejarias.glb', TRUE),
-('b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22', 'Kursi Sofa Custom (Chair Sofa)', 'Kursi sofa santai berbahan rangka kayu jati perhutani dengan bantalan empuk.', 2400000, 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80', '/models/asset 3D/chairsofa.glb', TRUE),
+('b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22', 'Kursi Sofa Custom (Chair Sofa)', 'Kursi sofa santai berbahan rangka kayu jati perhutani dengan bantalan empuk.', 2400000, '/models/asset foto/kursisofa1.png', '/models/asset 3D/chairsofa.glb', TRUE),
 ('c0eebc99-9c0b-4ef8-bb6d-6bb9bd380a33', 'Dipan Tempat Tidur Jati (Bed Frame)', 'Tempat tidur kayu jati perhutani dengan konstruksi sambungan kayu presisi yang sangat kuat.', 4500000, '/models/asset foto/dipan1.png', '/models/asset 3D/dipann.glb', TRUE),
 ('d0eebc99-9c0b-4ef8-bb6d-6bb9bd380a44', 'Lemari Sleding 2 Pintu', 'Lemari kayu jati perhutani dengan kapasitas luas, pintu kayu presisi, dan rak penyimpanan.', 3800000, '/models/asset foto/lemari1.png', '/models/asset 3D/lemarisleding.glb', TRUE),
 ('e0eebc99-9c0b-4ef8-bb6d-6bb9bd380a55', 'Meja Nakas', 'Meja kecil serbaguna dengan permukaan kayu halus dan desain minimalis.', 1500000, '/models/asset foto/nakas1.png', '/models/asset 3D/nakas.glb', TRUE),

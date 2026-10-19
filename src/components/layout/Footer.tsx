@@ -1,10 +1,25 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ShieldCheck, Ruler, Box, Sparkles, MessageCircle } from 'lucide-react';
 import { generateWhatsAppChatUrl } from '../../utils/whatsapp';
 import { ChairLogo } from '../ui/ChairLogo';
 
 export const Footer = () => {
+  const pathname = usePathname();
+
+  // On admin dashboard & subpages, only show copyright bar
+  if (pathname && pathname.startsWith('/admin')) {
+    return (
+      <footer className="bg-charcoal-900 text-warm-gray text-xs text-center py-4 border-t border-charcoal-700">
+        <div className="max-w-7xl mx-auto px-4">
+          <p>© {new Date().getFullYear()} BALI MOON FURNITURE. Hak Cipta Dilindungi.</p>
+        </div>
+      </footer>
+    );
+  }
   return (
     <footer className="bg-charcoal-900 text-cream-200 border-t border-charcoal-700 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

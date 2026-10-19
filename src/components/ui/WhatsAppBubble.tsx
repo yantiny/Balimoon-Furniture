@@ -1,13 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Sparkles, MessageSquare, CheckCheck } from 'lucide-react';
 import { generateWhatsAppChatUrl, getAdminWANumber } from '../../utils/whatsapp';
 
 export const WhatsAppBubble: React.FC = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
+
+  if (pathname && pathname.startsWith('/admin')) {
+    return null;
+  }
 
   const adminNumber = getAdminWANumber();
 

@@ -10,6 +10,11 @@ export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Hide main Navbar on admin dashboard and admin subpages
+  if (pathname && pathname.startsWith('/admin')) {
+    return null;
+  }
+
   const navLinks = [
     { href: '/', label: 'Beranda', icon: Compass },
     { href: '/furniture', label: 'Katalog Mebel', icon: Box },

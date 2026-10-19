@@ -1,13 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../../components/ui/ProductCard';
-import { STATIC_PRODUCTS } from '../../data/products';
+import { getDynamicProducts } from '../../data/products';
+import { fetchCatalogProducts } from '../../services/productService';
+import { Product } from '../../types/furniture';
 import { Search, Filter, SlidersHorizontal, Box } from 'lucide-react';
 
 export default function FurnitureCatalogPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [products, setProducts] = useState<Product[]>(getDynamicProducts());
+
+  useEffect(() => {
+    // Fetch latest products from Supabase / API
+    fetchCatalogProducts().then((data) => {
+      if (data && data.length > 0) setProducts(data);
+    });
+
+    const handleUpdate = () => {
+      setProducts(getDynamicProducts());
+    };
+    window.addEventListener('balimoon_products_updated', handleUpdate);
+    return () => {
+      window.removeEventListener('balimoon_products_updated', handleUpdate);
+    };
+  }, []);
 
   const categories = [
     { id: 'all', label: 'Semua Koleksi' },
@@ -16,12 +34,13 @@ export default function FurnitureCatalogPage() {
     { id: 'storage', label: 'Lemari & Rak' },
   ];
 
-  const filteredProducts = STATIC_PRODUCTS.filter((p) => {
+  const filteredProducts = products.filter((p) => {
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || p.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
 
   return (
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 min-h-[80vh]">

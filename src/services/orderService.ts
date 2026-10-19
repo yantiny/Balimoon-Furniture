@@ -4,6 +4,7 @@ import { getProductById } from '../data/products';
 import { generateOrderCode } from '../utils/orderCode';
 import { getSupabaseAdmin, isSupabaseConfigured } from '../lib/supabase';
 import { saveLocalOrder, getLocalOrders, updateLocalOrderStatus } from './localStorageService';
+import { formatNumericDate } from '../utils/date';
 
 // Status Mapping between DB (snake_case) and UI (UPPERCASE/Readable)
 export const DB_STATUS_TO_UI: Record<string, OrderStatus> = {
@@ -59,7 +60,7 @@ export function mapDbRowToOrderData(row: any, statusHistory: StatusHistoryItem[]
   return {
     orderId: row.kode_pesanan || row.orderId || '',
     "Id-Pemesanan": row.kode_pesanan || row.orderId || '',
-    date: row.created_at ? new Date(row.created_at).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) : new Date().toLocaleDateString('id-ID'),
+    date: row.created_at ? formatNumericDate(row.created_at) : formatNumericDate(new Date()),
     customerName: pelanggan.nama || row.nama_pelanggan || row.customerName || 'Pelanggan',
     whatsapp: pelanggan.no_whatsapp || pelanggan.whatsapp || row.no_whatsapp || row.whatsapp || '-',
     email: pelanggan.email || row.email || '-',

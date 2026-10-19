@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 
 import Link from 'next/link';
 import { STATIC_PRODUCTS, getProductById } from '../../../data/products';
+import { fetchCatalogProducts } from '../../../services/productService';
+import { Product } from '../../../types/furniture';
 import { formatIDR } from '../../../utils/pricing';
 import nextDynamic from 'next/dynamic';
 import { SlidersHorizontal, Clock, Ruler, Sparkles, ArrowLeft, Box } from 'lucide-react';
@@ -17,12 +19,25 @@ const FurnitureCanvas = nextDynamic(() => import('../../../components/3d/Furnitu
 export const dynamic = 'force-dynamic';
 
 export default function ProductDetailPage() {
-
-
   const params = useParams();
   const router = useRouter();
   const productId = Array.isArray(params?.id) ? params.id[0] : params?.id as string;
-  const product = getProductById(productId);
+  const [product, setProduct] = useState<Product | undefined>(() => getProductById(productId));
+
+  useEffect(() => {
+    fetchCatalogProducts().then(() => {
+      setProduct(getProductById(productId));
+    });
+
+    const handleUpdate = () => {
+      setProduct(getProductById(productId));
+    };
+    window.addEventListener('balimoon_products_updated', handleUpdate);
+    return () => {
+      window.removeEventListener('balimoon_products_updated', handleUpdate);
+    };
+  }, [productId]);
+
 
   // Angle presets for 3D GLB Asset photos
   const ANGLE_PRESETS: Array<{ label: string; name: string; position: [number, number, number] }> = [

@@ -41,11 +41,11 @@ export const STATIC_PRODUCTS: Product[] = [
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/chairsofa.glb",
     modelType: "sofa",
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80",
+    image: "/models/asset foto/kursisofa1.png",
     gallery: [
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1200&q=80"
+      "/models/asset foto/kursisofa1.png",
+      "/models/asset foto/kursisofa2.png",
+      "/models/asset foto/kursisofa3.png"
     ],
     productionTime: "14 - 18 Hari",
     length: { min: 60, max: 120, default: 65, step: 5 },
@@ -212,6 +212,44 @@ export const STATIC_PRODUCTS: Product[] = [
   // }
 ];
 
-export function getProductById(id: string): Product | undefined {
-  return STATIC_PRODUCTS.find(p => p.id === id);
+const PRODUCTS_CACHE_KEY = 'balimoon_products_override_v1';
+
+export function getLocalProductOverrides(): Record<string, { id: string; name: string; description: string; basePrice: number }> {
+  if (typeof window === 'undefined') return {};
+  try {
+    const raw = localStorage.getItem(PRODUCTS_CACHE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
 }
+
+export function applyProductOverride(product: Product): Product {
+  const overrides = getLocalProductOverrides();
+  const override = overrides[product.id];
+  if (!override) return product;
+
+  return {
+    ...product,
+    name: override.name ?? product.name,
+    description: override.description ?? product.description,
+    basePrice: override.basePrice !== undefined ? Number(override.basePrice) : product.basePrice,
+  };
+}
+
+export function getProductById(id: string): Product | undefined {
+  const base = STATIC_PRODUCTS.find(p => p.id === id);
+  if (!base) return undefined;
+  if (typeof window !== 'undefined') {
+    return applyProductOverride(base);
+  }
+  return base;
+}
+
+export function getDynamicProducts(): Product[] {
+  if (typeof window !== 'undefined') {
+    return STATIC_PRODUCTS.map(applyProductOverride);
+  }
+  return STATIC_PRODUCTS;
+}
+

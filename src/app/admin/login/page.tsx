@@ -138,10 +138,6 @@ export default function AdminLoginPage() {
           </button>
         </form>
 
-        {/* <div className="text-center text-[11px] text-warm-gray border-t border-warm-border/60 pt-4">
-          Default Dev Credentials: <code className="bg-cream-200 px-1.5 py-0.5 rounded text-charcoal-900 font-mono">admin@balimoon.com</code> / <code className="bg-cream-200 px-1.5 py-0.5 rounded text-charcoal-900 font-mono">balimoon2026</code>
-        </div> */}
-
       </div>
     </div>
   );

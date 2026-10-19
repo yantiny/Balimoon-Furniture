@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { OrderData, OrderStatus, StatusHistoryItem } from '../../../../types/furniture';
 import { formatIDR } from '../../../../utils/pricing';
+import { formatNumericDate } from '../../../../utils/date';
 import { generateWhatsAppChatUrl } from '../../../../utils/whatsapp';
 import { ChairLogo } from '../../../../components/ui/ChairLogo';
 import {
@@ -26,8 +27,10 @@ import {
   ShieldCheck,
   History,
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Calendar
 } from 'lucide-react';
+
 
 const STATUS_LIST: { value: OrderStatus; label: string }[] = [
   { value: 'SUBMITTED', label: 'Menunggu Konfirmasi (SUBMITTED)' },
@@ -237,34 +240,7 @@ export default function AdminOrderDetailPage() {
         )}
 
         {!loading && order && (
-          <div className="space-y-8 animate-in fade-in duration-300">
-            
-            {/* Header Title Card */}
-            <div className="bg-white p-6 rounded-3xl border border-warm-border/80 shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div>
-                <div className="flex items-center gap-2 text-xs text-warm-gray mb-1">
-                  <span>Kode Pesanan:</span>
-                  <span className="font-mono font-extrabold text-charcoal-900">{order.orderId}</span>
-                  <span>•</span>
-                  <span>Tanggal: {order.date}</span>
-                </div>
-                <h1 className="text-2xl font-serif font-bold text-charcoal-900">
-                  {order.productName} — Pelanggan: {order.customerName}
-                </h1>
-              </div>
-
-              {/* WhatsApp Action Button */}
-              <a
-                href={getWhatsAppContactUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3.5 rounded-2xl bg-wood hover:bg-wood-medium text-white font-extrabold text-xs transition-all shadow-md flex items-center justify-center gap-2 group shrink-0"
-              >
-                <MessageSquareText className="w-4 h-4 fill-current text-white" />
-                <span>HUBUNGI VIA WHATSAPP</span>
-              </a>
-            </div>
-
+          <div className="space-y-6 animate-in fade-in duration-300">
             {/* Notifications */}
             {successMsg && (
               <div className="p-4 rounded-2xl bg-cream-200/80 border border-wood/30 text-xs text-wood-dark font-semibold flex items-center gap-2">
@@ -286,7 +262,7 @@ export default function AdminOrderDetailPage() {
               {/* LEFT COLUMN: Customer & Order Details */}
               <div className="lg:col-span-6 space-y-6">
                 
-                {/* 1. Customer Info Card */}
+                {/* 1. Customer Info Card (Merged with Order ID & Direct WhatsApp Action) */}
                 <div className="bg-white p-6 rounded-3xl border border-warm-border/80 shadow-soft space-y-4">
                   <h3 className="font-serif font-bold text-lg text-charcoal-900 flex items-center gap-2">
                     <User className="w-5 h-5 text-wood-medium" />
@@ -294,19 +270,28 @@ export default function AdminOrderDetailPage() {
                   </h3>
 
                   <div className="space-y-3 text-xs">
+                    {/* ID / Kode Pesanan */}
+                    <div className="p-3 bg-cream-50 rounded-xl border border-warm-border/60 flex items-center justify-between">
+                      <span className="text-warm-gray font-medium">ID / Kode Pesanan</span>
+                      <span className="font-mono font-extrabold text-charcoal-900 text-sm">{order.orderId}</span>
+                    </div>
+
+                    {/* Tanggal Pemesanan */}
+                    <div className="p-3 bg-cream-50 rounded-xl border border-warm-border/60 flex items-center justify-between">
+                      <span className="text-warm-gray font-medium flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-wood-medium" />
+                        <span>Tanggal Pemesanan</span>
+                      </span>
+                      <span className="font-mono font-semibold text-charcoal-900">{formatNumericDate(order.date)}</span>
+                    </div>
+
+                    {/* Nama Lengkap */}
                     <div className="p-3 bg-cream-50 rounded-xl border border-warm-border/60 flex items-center justify-between">
                       <span className="text-warm-gray font-medium">Nama Lengkap</span>
                       <span className="font-bold text-charcoal-900 text-sm">{order.customerName}</span>
                     </div>
 
-                    <div className="p-3 bg-cream-50 rounded-xl border border-warm-border/60 flex items-center justify-between">
-                      <span className="text-warm-gray font-medium flex items-center gap-1.5">
-                        <Phone className="w-3.5 h-3.5 text-wood-medium" />
-                        <span>WhatsApp</span>
-                      </span>
-                      <span className="font-mono font-bold text-charcoal-900">{order.whatsapp}</span>
-                    </div>
-
+                    {/* Email */}
                     <div className="p-3 bg-cream-50 rounded-xl border border-warm-border/60 flex items-center justify-between">
                       <span className="text-warm-gray font-medium flex items-center gap-1.5">
                         <Mail className="w-3.5 h-3.5 text-wood-medium" />
@@ -315,6 +300,7 @@ export default function AdminOrderDetailPage() {
                       <span className="font-semibold text-charcoal-900">{order.email}</span>
                     </div>
 
+                    {/* Alamat Pengiriman */}
                     <div className="p-3.5 bg-cream-50 rounded-xl border border-warm-border/60 space-y-1">
                       <span className="text-warm-gray font-medium flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5 text-wood-medium" />
@@ -324,8 +310,21 @@ export default function AdminOrderDetailPage() {
                         {order.address}
                       </p>
                     </div>
+
+                    {/* Tombol Hubungi Via WhatsApp (Satu-satunya button kontak WA) */}
+                    <a
+                      href={getWhatsAppContactUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full mt-2 py-3.5 px-4 rounded-xl bg-wood hover:bg-wood-medium text-white font-extrabold text-xs transition-all shadow-md flex items-center justify-center gap-2 group"
+                    >
+                      <MessageSquareText className="w-4 h-4 fill-current text-white" />
+                      <span>HUBUNGI VIA WHATSAPP</span>
+                    </a>
                   </div>
                 </div>
+
+
 
                 {/* 2. Furniture Customization Details Card */}
                 <div className="bg-white p-6 rounded-3xl border border-warm-border/80 shadow-soft space-y-4">
@@ -341,22 +340,13 @@ export default function AdminOrderDetailPage() {
                     </div>
 
                     <div className="p-3.5 bg-cream-50 rounded-xl border border-warm-border/60">
-                      <span className="text-warm-gray block text-[11px]">Dimensi Custom (P x L x T)</span>
+                      <span className="text-warm-gray block text-[11px]">Ukuran (P x L x T)</span>
                       <span className="font-mono font-bold text-charcoal-900 text-sm mt-0.5 block">
                         {order.length} x {order.width} x {order.height} cm
                       </span>
                     </div>
-
-                    <div className="p-3.5 bg-cream-50 rounded-xl border border-warm-border/60">
-                      <span className="text-warm-gray block text-[11px]">Bahan Kayu</span>
-                      <span className="font-bold text-charcoal-900 text-sm mt-0.5 block">{order.material}</span>
-                    </div>
-
-                    <div className="p-3.5 bg-cream-50 rounded-xl border border-warm-border/60">
-                      <span className="text-warm-gray block text-[11px]">Finishing</span>
-                      <span className="font-bold text-charcoal-900 text-sm mt-0.5 block">{order.finishing}</span>
-                    </div>
                   </div>
+
 
                   {order.additionalRequest && order.additionalRequest !== '-' && (
                     <div className="p-3.5 bg-amber-50/80 rounded-xl border border-amber-200 text-xs space-y-1">

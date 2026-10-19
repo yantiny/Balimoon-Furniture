@@ -4,6 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { STATIC_PRODUCTS, getProductById } from '../../../data/products';
+import { fetchCatalogProducts } from '../../../services/productService';
 import { calculateEstimatedPrice } from '../../../utils/pricing';
 import dynamic from 'next/dynamic';
 import { PriceEstimateWidget } from '../../../components/ui/PriceEstimateWidget';
@@ -40,10 +41,26 @@ export default function CustomizerPage() {
   const router = useRouter();
   const productId = Array.isArray(params?.id) ? params.id[0] : (params?.id as string) || 'kursi-kayu-01';
 
+  const [productVersion, setProductVersion] = useState(0);
+
+  useEffect(() => {
+    fetchCatalogProducts().then(() => {
+      setProductVersion((v) => v + 1);
+    });
+
+    const handleUpdate = () => {
+      setProductVersion((v) => v + 1);
+    };
+    window.addEventListener('balimoon_products_updated', handleUpdate);
+    return () => {
+      window.removeEventListener('balimoon_products_updated', handleUpdate);
+    };
+  }, [productId]);
 
   const product = useMemo(() => {
     return getProductById(productId) || STATIC_PRODUCTS[0];
-  }, [productId]);
+  }, [productId, productVersion]);
+
 
   // Form State
   const [length, setLength] = useState<number>(product.length.default);
