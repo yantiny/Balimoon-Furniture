@@ -168,8 +168,10 @@ VALUES
 ('d0eebc99-9c0b-4ef8-bb6d-6bb9bd380a44', 'Lemari Sleding 2 Pintu', 'Lemari kayu jati perhutani dengan kapasitas luas, pintu kayu presisi, dan rak penyimpanan.', 3800000, '/models/asset foto/lemari1.png', '/models/asset 3D/lemarisleding.glb', TRUE),
 ('e0eebc99-9c0b-4ef8-bb6d-6bb9bd380a55', 'Meja Nakas', 'Meja kecil serbaguna dengan permukaan kayu halus dan desain minimalis.', 1500000, '/models/asset foto/nakas1.png', '/models/asset 3D/nakas.glb', TRUE),
 ('f0eebc99-9c0b-4ef8-bb6d-6bb9bd380a66', 'Meja Makan Tinggi', 'Meja makan kayu tinggi dengan papan kayu tebal untuk keluarga.', 3200000, '/models/asset foto/mejapendek1.png', '/models/asset 3D/mejatinggi.glb', TRUE),
-('10eebc99-9c0b-4ef8-bb6d-6bb9bd380a77', 'Meja Tamu', 'Meja tamu kayu jati perhutani serbaguna untuk menata buku dan dekorasi.', 2800000, '/models/asset foto/rakdapur1.png', '/models/asset 3D/rak.glb', TRUE)
+('10eebc99-9c0b-4ef8-bb6d-6bb9bd380a77', 'Meja Tamu', 'Meja tamu kayu jati perhutani serbaguna untuk menata buku dan dekorasi.', 2800000, '/models/asset foto/rakdapur1.png', '/models/asset 3D/rak.glb', TRUE),
+('20eebc99-9c0b-4ef8-bb6d-6bb9bd380a88', 'Meja Pendek Minimalis (Coffee Table)', 'Meja tamu pendek berbahan kayu jati perhutani dengan rancangan minimalis, sudut presisi, dan permukaan kayu halus alami.', 1950000, '/models/asset foto/mejapendek1.png', '/models/asset 3D/mejapendek.glb', TRUE)
 ON CONFLICT (id) DO UPDATE SET
+
   nama = EXCLUDED.nama,
   deskripsi = EXCLUDED.deskripsi,
   harga_dasar = EXCLUDED.harga_dasar,

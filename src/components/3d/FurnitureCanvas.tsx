@@ -1,12 +1,52 @@
 'use client';
 
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, Component, ReactNode } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, ContactShadows, Environment, Center } from '@react-three/drei';
+import { OrbitControls, ContactShadows, Center } from '@react-three/drei';
 import * as THREE from 'three';
 import { ParametricFurniture } from './ParametricFurniture';
 import { GLBFurnitureModel } from './GLBFurnitureModel';
 import { RefreshCw, RotateCcw, Move3d } from 'lucide-react';
+
+interface ErrorBoundaryProps {
+  children: ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class CanvasErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any) {
+    console.warn('[3D Canvas Runtime Error]:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center space-y-2 bg-cream-200/50 rounded-2xl">
+          <p className="text-xs font-bold text-charcoal-800">Pratinjau 3D sedang memuat...</p>
+          <button
+            onClick={() => this.setState({ hasError: false })}
+            className="px-3 py-1.5 bg-charcoal-900 text-white rounded-xl text-xs font-semibold hover:bg-wood transition-colors"
+          >
+            Muat Ulang 3D
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 interface FurnitureCanvasProps {
   modelType: 'table' | 'dining-table' | 'coffee-table' | 'cabinet' | 'bookshelf' | 'tv-console' | 'chair' | 'sofa' | 'bed';
@@ -86,58 +126,60 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
         </div>
       )}
 
-      {/* R3F Canvas Viewport */}
-      <Canvas
-        key={`${key}-${initialCamPos.join('-')}-${enableControls}`}
-        shadows
-        camera={{ position: initialCamPos, fov: 38 }}
-        className={`w-full h-full ${enableControls ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'}`}
-      >
-        <ambientLight intensity={0.85} />
-        <directionalLight
-          position={[5, 8, 5]}
-          intensity={1.1}
-          castShadow
-          shadow-mapSize={2048}
-          shadow-bias={-0.0001}
-        />
-        <directionalLight position={[-5, 5, -5]} intensity={0.4} />
-
-        <Suspense fallback={null}>
-          <Center position={modelPosition}>
-            {modelUrl ? (
-              <GLBFurnitureModel
-                modelUrl={modelUrl}
-                length={length}
-                width={width}
-                height={height}
-                defaultLength={defaultLength}
-                defaultWidth={defaultWidth}
-                defaultHeight={defaultHeight}
-                showDimensions={showDimensions}
-                scale3D={scale3D}
-              />
-
-            ) : (
-              <ParametricFurniture
-                modelType={modelType}
-                length={length}
-                width={width}
-                height={height}
-                showDimensions={showDimensions}
-              />
-            )}
-          </Center>
-
-          <ContactShadows
-            position={[0, -0.75, 0]}
-            opacity={0.4}
-            scale={4.5}
-            blur={1.5}
-            far={1}
+      {/* R3F Canvas Viewport with Error Boundary */}
+      <CanvasErrorBoundary>
+        <Canvas
+          key={`${key}-${initialCamPos.join('-')}-${enableControls}`}
+          shadows
+          camera={{ position: initialCamPos, fov: 38 }}
+          className={`w-full h-full ${enableControls ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'}`}
+        >
+          <ambientLight intensity={1.1} />
+          <directionalLight
+            position={[5, 8, 5]}
+            intensity={1.2}
+            castShadow
+            shadow-mapSize={2048}
+            shadow-bias={-0.0001}
           />
-          <Environment preset="apartment" />
-        </Suspense>
+          <directionalLight position={[-5, 5, -5]} intensity={0.6} />
+          <hemisphereLight intensity={0.5} groundColor="#ded7cc" color="#ffffff" />
+
+          <Suspense fallback={null}>
+            <Center position={modelPosition}>
+              {modelUrl ? (
+                <GLBFurnitureModel
+                  modelUrl={modelUrl}
+                  length={length}
+                  width={width}
+                  height={height}
+                  defaultLength={defaultLength}
+                  defaultWidth={defaultWidth}
+                  defaultHeight={defaultHeight}
+                  showDimensions={showDimensions}
+                  scale3D={scale3D}
+                />
+
+              ) : (
+                <ParametricFurniture
+                  modelType={modelType}
+                  length={length}
+                  width={width}
+                  height={height}
+                  showDimensions={showDimensions}
+                />
+              )}
+            </Center>
+
+            <ContactShadows
+              position={[0, -0.75, 0]}
+              opacity={0.4}
+              scale={4.5}
+              blur={1.5}
+              far={1}
+            />
+          </Suspense>
+
 
         <OrbitControls
           makeDefault
@@ -157,6 +199,8 @@ export const FurnitureCanvas: React.FC<FurnitureCanvasProps> = ({
           }}
         />
       </Canvas>
+    </CanvasErrorBoundary>
+
 
       {/* Bottom Hint (Only shown when controls enabled and UI visible) */}
       {!hideUIControls && enableControls && (

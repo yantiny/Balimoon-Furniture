@@ -11,6 +11,7 @@ export const SLUG_TO_UUID: Record<string, string> = {
   'meja-kecil-coffee-05': 'e0eebc99-9c0b-4ef8-bb6d-6bb9bd380a55',
   'meja-tinggi-makan-06': 'f0eebc99-9c0b-4ef8-bb6d-6bb9bd380a66',
   'meja-pendek-panjang-07': '10eebc99-9c0b-4ef8-bb6d-6bb9bd380a77',
+  'meja-pendek-kopi-08': '20eebc99-9c0b-4ef8-bb6d-6bb9bd380a88',
 };
 
 export const UUID_TO_SLUG: Record<string, string> = {
@@ -21,7 +22,9 @@ export const UUID_TO_SLUG: Record<string, string> = {
   'e0eebc99-9c0b-4ef8-bb6d-6bb9bd380a55': 'meja-kecil-coffee-05',
   'f0eebc99-9c0b-4ef8-bb6d-6bb9bd380a66': 'meja-tinggi-makan-06',
   '10eebc99-9c0b-4ef8-bb6d-6bb9bd380a77': 'meja-pendek-panjang-07',
+  '20eebc99-9c0b-4ef8-bb6d-6bb9bd380a88': 'meja-pendek-kopi-08',
 };
+
 
 export interface ProductOverride {
   id: string; // can be slug or uuid

@@ -29,7 +29,7 @@ export const STATIC_PRODUCTS: Product[] = [
   },
   {
     id: "sofa-single-02",
-    name: "Kursi Sofa Custom (Chair Sofa)",
+    name: "Kursi Sofa Custom",
     tagline: "Sofa santai dengan rangka kayu jati perhutani dan kenyamanan tinggi.",
     category: "living",
     basePrice: 2400000,
@@ -55,7 +55,7 @@ export const STATIC_PRODUCTS: Product[] = [
   },
   {
     id: "dipan-tempat-tidur-03",
-    name: "Dipan Tempat Tidur Jati (Bed Frame)",
+    name: "Dipan Tempat Tidur Jati",
     tagline: "Dipan kayu jati perhutani berkualitas tinggi untuk kenyamanan tidur maksimal.",
     category: "living",
     basePrice: 4500000,
@@ -146,11 +146,11 @@ export const STATIC_PRODUCTS: Product[] = [
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/mejatinggi.glb",
     modelType: "dining-table",
-    image: "/models/asset foto/mejapendek1.png",
+    image: "/models/asset foto/mejatinggi1.png",
     gallery: [
-      "/models/asset foto/mejapendek1.png",
-      "/models/asset foto/mejapendek2.png",
-      "/models/asset foto/mejapendek3.png"
+      "/models/asset foto/mejatinggi1.png",
+      "/models/asset foto/mejatinggi2.png",
+      "/models/asset foto/mejatinggi3.png"
     ],
     productionTime: "14 - 21 Hari",
     length: { min: 100, max: 260, default: 160, step: 5 },
@@ -172,17 +172,43 @@ export const STATIC_PRODUCTS: Product[] = [
     finishing: "Finishing Alami Kayu",
     model3D: "/models/asset 3D/rak.glb",
     modelType: "bookshelf",
-    image: "/models/asset foto/rakdapur1.png",
+    image: "/models/asset foto/rak1.png",
     gallery: [
-      "/models/asset foto/rakdapur1.png",
-      "/models/asset foto/rakdapur2.png",
-      "/models/asset foto/rakdapur3.png"
+      "/models/asset foto/rak1.png",
+      "/models/asset foto/rak2.png",
+      "/models/asset foto/rak3.png"
     ],
     productionTime: "14 - 20 Hari",
     length: { min: 60, max: 200, default: 100, step: 5 },
     width: { min: 30, max: 60, default: 40, step: 2 },
     height: { min: 100, max: 220, default: 160, step: 5 },
     recommendedDimensions: { length: 100, width: 40, height: 160 }
+  },
+  {
+    id: "meja-pendek-kopi-08",
+    name: "Meja Pendek Minimalis",
+    tagline: "Meja kopi pendek kayu jati solid untuk ruang keluarga & santai.",
+    category: "living",
+    basePrice: 1950000,
+    description: "Meja tamu pendek berbahan kayu jati perhutani dengan rancangan minimalis, sudut presisi, dan permukaan kayu halus alami untuk melengkapi ruang santai Anda.",
+    material: "Kayu Jati Perhutani",
+    materials: [
+      { id: "teak", name: "Kayu Jati Perhutani", description: "Kayu jati perhutani oven dengan serat alami kayu yang anggun dan kokoh.", priceMultiplier: 1.0 }
+    ],
+    finishing: "Finishing Alami Kayu",
+    model3D: "/models/asset 3D/mejapendek.glb",
+    modelType: "coffee-table",
+    image: "/models/asset foto/mejapendek1.png",
+    gallery: [
+      "/models/asset foto/mejapendek1.png",
+      "/models/asset foto/mejapendek2.png",
+      "/models/asset foto/mejapendek3.png"
+    ],
+    productionTime: "10 - 14 Hari",
+    length: { min: 60, max: 140, default: 90, step: 5 },
+    width: { min: 40, max: 80, default: 50, step: 5 },
+    height: { min: 35, max: 65, default: 45, step: 5 },
+    recommendedDimensions: { length: 90, width: 50, height: 45 }
   },
   // {
   //   id: "rak-modular-tingkat-08",
